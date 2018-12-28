@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>javascript 实现继承 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="继承要实现的效果是子类实例能够“使用”父类的属性。 实现方式上可以分为 1.sub获得sup的属性的访问权2.sub获得sup的属性的拷贝 结论就是：想要获得访问权就设置proto的指向。想要拷贝那就赋值，不过要时刻记得 引用数据类型 的赋值的实质。 还要讨论的话无非是 讲一讲如何设置proto。和如何进行拷贝。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript 实现继承">
+<meta property="og:url" content="http://yoursite.com/2018/12/28/javascript实现继承/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="继承要实现的效果是子类实例能够“使用”父类的属性。 实现方式上可以分为 1.sub获得sup的属性的访问权2.sub获得sup的属性的拷贝 结论就是：想要获得访问权就设置proto的指向。想要拷贝那就赋值，不过要时刻记得 引用数据类型 的赋值的实质。 还要讨论的话无非是 讲一讲如何设置proto。和如何进行拷贝。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-28T14:44:37.869Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="javascript 实现继承">
+<meta name="twitter:description" content="继承要实现的效果是子类实例能够“使用”父类的属性。 实现方式上可以分为 1.sub获得sup的属性的访问权2.sub获得sup的属性的拷贝 结论就是：想要获得访问权就设置proto的指向。想要拷贝那就赋值，不过要时刻记得 引用数据类型 的赋值的实质。 还要讨论的话无非是 讲一讲如何设置proto。和如何进行拷贝。">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,16 +154,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-javascript实现继承" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+            <article id="post-javascript实现继承" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/28/javascript实现继承/">javascript 实现继承</a>
+    <h1 class="article-title" itemprop="name">
+      javascript 实现继承
     </h1>
   
 
@@ -176,30 +178,131 @@
 <p>实现方式上可以分为</p>
 <p>1.sub获得sup的属性的访问权<br>2.sub获得sup的属性的拷贝</p>
 <p>结论就是：<br>想要获得访问权就设置<strong>proto</strong>的指向。<br>想要拷贝那就赋值，不过要时刻记得 引用数据类型 的赋值的实质。</p>
-<p>还要讨论的话无非是 讲一讲如何设置<strong>proto</strong>。<br>和如何进行拷贝。<br>
-        
-          <a class="article-more-a" href="/2018/12/28/javascript实现继承/#more">more >></a>
-        
+<p>还要讨论的话无非是 讲一讲如何设置<strong>proto</strong>。<br>和如何进行拷贝。<br><a id="more"></a></p>
+<p>接下来都是些 为了复杂而复杂的命名过程。</p>
+<p>实现第一种 叫做原型链继承<br>关键在于sub实例的<strong>proto</strong>属性要指向sup实例。<br>用new 调用构造函数会干的一件事是：<br>将对象的<strong>proto</strong>设为构造函数的prototype属性指向的对象</p>
+<p>那么可以<br>    在调用构造函数创造实例之前 给构造函数的prototype赋值<br>或者<br>    对已有的对象的<strong>proto</strong>属性赋值</p>
+<p>忘记了之前在哪里看到的说法，<br>sub的<strong>proto</strong>指向构造函数的prototype所指向的实例。<br>好像两者捆绑了一样。<br>这是错误的<br>证据是<br>    先调用构造函数，再修改构造函数的prototype，之前生成的对象的<strong>proto</strong>并没有改变<br>    修改<strong>proto</strong> 然后调用构造了这个实例的构造函数创建新实例，新实例没有实现继承</p>
+<p>实现第二种 叫做构造继承<br>比较简单的方式是在子类构造函数中 用 call 来调用父类的构造函数<br>function sub(){<br>    sup.call(this);<br>    this.subp=’yes’<br>}</p>
+<p>注意，构造函数仅在用 new 调用时 会执行<strong>proto</strong>赋值为构造函数prototype的操作<br>这里的sup.call(this)是普通调用，所以sub的<strong>proto</strong>不会指向sup的sup。<br>这种方法就是单纯的获得了父类的属性拷贝，<br>既没有产生父类的实例，也没有加入原型链，所以不能访问到sup的sup；</p>
+<p>构造继承是把属性拷贝到子类实例，还有一种方法是把属性拷贝到父属性<br>这种方法叫做拷贝继承，<br>原理是用for in 遍历父实例的属性 并赋值给sub的<strong>proto</strong><br>但是要注意 for in 不能访问到不可枚举方法<br>比如说<strong>proto</strong>，<br>但是从另一个方面来说，不会覆盖sup的<strong>proto</strong>，这样就不会打乱原型链，可以实现多继承；</p>
+<p>当然需要时刻牢记赋值为引用数据类型的实质。<br>拷贝继承有时候需要搭配深拷贝使用。</p>
+<p>但是通常来说 我们想要实现的继承效果是<br>获得数据的拷贝<br>获得函数的访问权限。<br>这时候我们应该混合两种方式<br>也就是   组合继承 和 寄生组合继承</p>
+<p>组合继承</p>
+<p>使用构造继承 并且 通过修改prototype或<strong>proto</strong>将子类加入原型链。</p>
+<p>寄生组合继承 通过借用构造函数来继承属性，通过原型链的方式来继承方法</p>
+<p>首先在subType的构造函数中<br>function SubType(name){<br>    SuperType.call(this); //这是构造继承<br>}<br>然后 在调用构造函数创造实例之前<br>调用这么一个方法<br>inheritPrototype(SubType, SuperType)<br>这个方法的定义是</p>
+<p>注意subType, superType 均为构造函数<br>function inheritPrototype(subType, superType){<br>    var prototype = Object.create(superType.prototype); //创建对象<br>    prototype.constructor = subType;  //增强对象<br>    subType.prototype = prototype;   //指定对象<br>}<br>Object.create()方法创建一个新对象，这个对象的<strong>proto</strong>为参数<br>第一步创建了一个对象，这个对象是一个没有自己的属性的父类实例。<br>相当于这个对象 只经历了 new superType()的 this.<strong>proto</strong>=superType.prototype<br>没有接下来的各种this.xx=yy;</p>
+<p>第二步 这个父类实例constructor指向 子类的构造函数</p>
+<pre><code>constructor其实没有什么用处，只是JavaScript语言设计的历史遗留物。
+由于constructor属性是可以变更的，所以未必真的指向对象的构造函数，
+只是一个提示。不过，从编程习惯上，我们应该尽量让对象的constructor指向其构造函数，以维持这个惯例。
+所以说注释掉也可以啦
+</code></pre><p>第三步，子类构造函数的prototype 指向第一步中获得的对象</p>
+<p>这样一套下来<br>子对象 在原型链上<br>它获得了父对象的属性的拷贝，但是由于没有创建一个完整的父类实例，所以没有消耗多余的存储空间。</p>
+<p>javascript高级编程上还提到了两个方法<br>原型式继承<br>这种方法最后演变为了函数Object.create(sup实例)<br>上面已经说了Object.create()方法创建一个新对象，这个对象的<strong>proto</strong>为函数参数<br>所以和原型链继承没有本质区别。</p>
+<p>寄生式继承<br>单纯使用Object.create()仅仅是获得了一个<strong>proto</strong>指向某个实例的对象。<br>它没有自己特有的属性。<br>而寄生式继承即创建一个仅用于封装继承过程的函数。<br>在这个函数内部 用Object.create()获得了一个对象，然后赋给它一些独特的属性。<br>最后返回这个对象。<br>又new 方式调用 函数的特点。<br>是否使用new 调用这个封装继承过程的函数。得到的结果都是一致的。</p>
+
       
 
       
-    </p></div>
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
     <div class="article-info article-info-index">
       
       
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/28/javascript实现继承/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/12/28/javascript实现继承/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/28/yilia头像设置/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">yilia头像设置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -219,208 +322,14 @@
 
 
 
-
   
-    <article id="post-yilia头像设置" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/28/yilia头像设置/">yilia头像设置</a>
-    </h1>
   
 
-        
-        <a href="/2018/12/28/yilia头像设置/" class="archive-article-date">
-  	<time datetime="2018-12-28T11:33:25.226Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>yilia是一个hexo主题，<br>头像配置在\themes\yilia_config.yml 文件下 avatar项<br>要注意两点<br>1.图片url<br>如果是用的网络图片 应该没有问题<br>如果是本地图片 其路径起始在 根目录下的source文件夹下<br>也就是说 如果该项的值为 /assets/avatar.jpeg<br>对应文件为 source/assets/avatar.jpeg<br>2.空格<br>要留出一个空格<br>avatar: /assets/avatar.jpeg<br>不然hexo g 会报错</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/28/yilia头像设置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-github page + hexo" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/28/github page + hexo/">github pages + hexo</a>
-    </h1>
   
 
-        
-        <a href="/2018/12/28/github page + hexo/" class="archive-article-date">
-  	<time datetime="2018-12-28T10:45:42.530Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>当用户创建了一个名为 “用户名.github.io”的仓库时，github会自动启用github pages<br>当访问将该仓库名当作域名访问时， 会访问到 该仓库下 的index.html 网页<br>相当于一个静态网站托管服务。</p>
-<p>hexo是一个静态网站生成器，能通过一些简单的操作来生成博客网站，<br>而不用自己从头开始编写html,css和组织文件结构。只需要专注于写文章。<br>当然由于整个网站都是属于自己的，你也可以自己搞些花样<br>
-        
-          <a class="article-more-a" href="/2018/12/28/github page + hexo/#more">more >></a>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/28/github page + hexo/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/28/hello-world/">Hello World</a>
-    </h1>
   
 
-        
-        <a href="/2018/12/28/hello-world/" class="archive-article-date">
-  	<time datetime="2018-12-28T09:15:17.659Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/28/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -443,8 +352,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
