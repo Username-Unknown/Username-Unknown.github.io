@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>javascript 实现继承 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="继承要实现的效果是子类实例能够“使用”父类的属性。 实现方式上可以分为 1.sub获得sup的属性的访问权2.sub获得sup的属性的拷贝 结论就是：想要获得访问权就设置proto的指向。想要拷贝那就赋值，不过要时刻记得 引用数据类型 的赋值的实质。 还要讨论的话无非是 讲一讲如何设置proto。和如何进行拷贝。">
+  <meta name="description" content="继承要实现的效果是子类实例能够“使用”父类的属性。 实现方式上可以分为 1.sub获得sup的属性的访问权2.sub获得sup的属性的拷贝 结论就是：想要获得访问权就设置__proto__的指向。想要拷贝那就赋值，不过要时刻记得 引用数据类型 的赋值的实质。 还要讨论的话无非是 讲一讲如何设置__proto__。和如何进行拷贝。 接下来都是些 为了复杂而复杂的命名过程。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript 实现继承">
 <meta property="og:url" content="http://yoursite.com/2018/12/28/javascript实现继承/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="继承要实现的效果是子类实例能够“使用”父类的属性。 实现方式上可以分为 1.sub获得sup的属性的访问权2.sub获得sup的属性的拷贝 结论就是：想要获得访问权就设置proto的指向。想要拷贝那就赋值，不过要时刻记得 引用数据类型 的赋值的实质。 还要讨论的话无非是 讲一讲如何设置proto。和如何进行拷贝。">
+<meta property="og:description" content="继承要实现的效果是子类实例能够“使用”父类的属性。 实现方式上可以分为 1.sub获得sup的属性的访问权2.sub获得sup的属性的拷贝 结论就是：想要获得访问权就设置__proto__的指向。想要拷贝那就赋值，不过要时刻记得 引用数据类型 的赋值的实质。 还要讨论的话无非是 讲一讲如何设置__proto__。和如何进行拷贝。 接下来都是些 为了复杂而复杂的命名过程。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-28T14:44:37.869Z">
+<meta property="og:updated_time" content="2018-12-28T14:57:51.255Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript 实现继承">
-<meta name="twitter:description" content="继承要实现的效果是子类实例能够“使用”父类的属性。 实现方式上可以分为 1.sub获得sup的属性的访问权2.sub获得sup的属性的拷贝 结论就是：想要获得访问权就设置proto的指向。想要拷贝那就赋值，不过要时刻记得 引用数据类型 的赋值的实质。 还要讨论的话无非是 讲一讲如何设置proto。和如何进行拷贝。">
+<meta name="twitter:description" content="继承要实现的效果是子类实例能够“使用”父类的属性。 实现方式上可以分为 1.sub获得sup的属性的访问权2.sub获得sup的属性的拷贝 结论就是：想要获得访问权就设置__proto__的指向。想要拷贝那就赋值，不过要时刻记得 引用数据类型 的赋值的实质。 还要讨论的话无非是 讲一讲如何设置__proto__。和如何进行拷贝。 接下来都是些 为了复杂而复杂的命名过程。">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -177,31 +177,27 @@
         <p>继承要实现的效果是子类实例能够“使用”父类的属性。</p>
 <p>实现方式上可以分为</p>
 <p>1.sub获得sup的属性的访问权<br>2.sub获得sup的属性的拷贝</p>
-<p>结论就是：<br>想要获得访问权就设置<strong>proto</strong>的指向。<br>想要拷贝那就赋值，不过要时刻记得 引用数据类型 的赋值的实质。</p>
-<p>还要讨论的话无非是 讲一讲如何设置<strong>proto</strong>。<br>和如何进行拷贝。<br><a id="more"></a></p>
-<p>接下来都是些 为了复杂而复杂的命名过程。</p>
-<p>实现第一种 叫做原型链继承<br>关键在于sub实例的<strong>proto</strong>属性要指向sup实例。<br>用new 调用构造函数会干的一件事是：<br>将对象的<strong>proto</strong>设为构造函数的prototype属性指向的对象</p>
-<p>那么可以<br>    在调用构造函数创造实例之前 给构造函数的prototype赋值<br>或者<br>    对已有的对象的<strong>proto</strong>属性赋值</p>
-<p>忘记了之前在哪里看到的说法，<br>sub的<strong>proto</strong>指向构造函数的prototype所指向的实例。<br>好像两者捆绑了一样。<br>这是错误的<br>证据是<br>    先调用构造函数，再修改构造函数的prototype，之前生成的对象的<strong>proto</strong>并没有改变<br>    修改<strong>proto</strong> 然后调用构造了这个实例的构造函数创建新实例，新实例没有实现继承</p>
+<p>结论就是：<br>想要获得访问权就设置__proto__的指向。<br>想要拷贝那就赋值，不过要时刻记得 引用数据类型 的赋值的实质。</p>
+<p>还要讨论的话无非是 讲一讲如何设置__proto__。<br>和如何进行拷贝。</p>
+<p>接下来都是些 为了复杂而复杂的命名过程。<br><a id="more"></a><br>实现第一种 叫做原型链继承<br>关键在于sub实例的__proto__属性要指向sup实例。<br>用new 调用构造函数会干的一件事是：<br>将对象的__proto__设为构造函数的prototype属性指向的对象</p>
+<p>那么可以<br>    在调用构造函数创造实例之前 给构造函数的prototype赋值<br>或者<br>    对已有的对象的__proto__属性赋值</p>
+<p>忘记了之前在哪里看到的说法，<br>sub的__proto__指向构造函数的prototype所指向的实例。<br>好像实例和构造函数捆绑在了一起一样，修改实例__proto__实际是修改构造函数的prototype。<br>这是错误的<br>证据是<br>    先调用构造函数，再修改构造函数的prototype，之前生成的对象的__proto__并没有改变<br>    修改__proto__ 然后调用构造了这个实例的构造函数创建新实例，新实例没有实现继承</p>
 <p>实现第二种 叫做构造继承<br>比较简单的方式是在子类构造函数中 用 call 来调用父类的构造函数<br>function sub(){<br>    sup.call(this);<br>    this.subp=’yes’<br>}</p>
-<p>注意，构造函数仅在用 new 调用时 会执行<strong>proto</strong>赋值为构造函数prototype的操作<br>这里的sup.call(this)是普通调用，所以sub的<strong>proto</strong>不会指向sup的sup。<br>这种方法就是单纯的获得了父类的属性拷贝，<br>既没有产生父类的实例，也没有加入原型链，所以不能访问到sup的sup；</p>
-<p>构造继承是把属性拷贝到子类实例，还有一种方法是把属性拷贝到父属性<br>这种方法叫做拷贝继承，<br>原理是用for in 遍历父实例的属性 并赋值给sub的<strong>proto</strong><br>但是要注意 for in 不能访问到不可枚举方法<br>比如说<strong>proto</strong>，<br>但是从另一个方面来说，不会覆盖sup的<strong>proto</strong>，这样就不会打乱原型链，可以实现多继承；</p>
+<p>注意，构造函数仅在用 new 调用时 会执行__proto__赋值为构造函数prototype的操作<br>这里的sup.call(this)是普通调用，所以sub的__proto__不会指向sup的sup。<br>这种方法就是单纯的把一个父类实例该获得的属性移到了子实例上。<br>既没有产生父类的实例，也没有加入原型链，所以不能访问到sup的sup；</p>
+<p>构造继承是把属性拷贝到子类实例，还有一种方法是把属性拷贝到父属性<br>这种方法叫做拷贝继承，<br>原理是用for in 遍历父实例的属性 并赋值给sub的__proto__<br>但是要注意 for in 不能访问到不可枚举方法<br>比如说__proto__，<br>但是从另一个方面来说，不会覆盖sup的__proto__，这样就不会打乱原型链，可以实现多继承；</p>
 <p>当然需要时刻牢记赋值为引用数据类型的实质。<br>拷贝继承有时候需要搭配深拷贝使用。</p>
 <p>但是通常来说 我们想要实现的继承效果是<br>获得数据的拷贝<br>获得函数的访问权限。<br>这时候我们应该混合两种方式<br>也就是   组合继承 和 寄生组合继承</p>
 <p>组合继承</p>
-<p>使用构造继承 并且 通过修改prototype或<strong>proto</strong>将子类加入原型链。</p>
+<p>使用构造继承 并且 通过修改prototype或__proto__将子类加入原型链。</p>
 <p>寄生组合继承 通过借用构造函数来继承属性，通过原型链的方式来继承方法</p>
 <p>首先在subType的构造函数中<br>function SubType(name){<br>    SuperType.call(this); //这是构造继承<br>}<br>然后 在调用构造函数创造实例之前<br>调用这么一个方法<br>inheritPrototype(SubType, SuperType)<br>这个方法的定义是</p>
-<p>注意subType, superType 均为构造函数<br>function inheritPrototype(subType, superType){<br>    var prototype = Object.create(superType.prototype); //创建对象<br>    prototype.constructor = subType;  //增强对象<br>    subType.prototype = prototype;   //指定对象<br>}<br>Object.create()方法创建一个新对象，这个对象的<strong>proto</strong>为参数<br>第一步创建了一个对象，这个对象是一个没有自己的属性的父类实例。<br>相当于这个对象 只经历了 new superType()的 this.<strong>proto</strong>=superType.prototype<br>没有接下来的各种this.xx=yy;</p>
+<p>注意subType, superType 均为构造函数<br>function inheritPrototype(subType, superType){<br>    var prototype = Object.create(superType.prototype); //创建对象<br>    prototype.constructor = subType;  //增强对象<br>    subType.prototype = prototype;   //指定对象<br>}<br>Object.create()方法创建一个新对象，这个对象的__proto__为参数<br>第一步创建了一个对象，这个对象是一个没有自己的属性的父类实例。<br>相当于这个对象 只经历了 new superType()的 this.__proto__=superType.prototype<br>没有接下来的各种this.xx=yy;</p>
 <p>第二步 这个父类实例constructor指向 子类的构造函数</p>
-<pre><code>constructor其实没有什么用处，只是JavaScript语言设计的历史遗留物。
-由于constructor属性是可以变更的，所以未必真的指向对象的构造函数，
-只是一个提示。不过，从编程习惯上，我们应该尽量让对象的constructor指向其构造函数，以维持这个惯例。
-所以说注释掉也可以啦
-</code></pre><p>第三步，子类构造函数的prototype 指向第一步中获得的对象</p>
+<p> constructor其实没有什么用处，只是JavaScript语言设计的历史遗留物。<br> 由于constructor属性是可以变更的，所以未必真的指向对象的构造函数，<br> 只是一个提示。不过，从编程习惯上，我们应该尽量让对象的constructor指向其构造函数，以维持这个惯例。<br> 所以说注释掉也可以啦</p>
+<p>第三步，子类构造函数的prototype 指向第一步中获得的对象</p>
 <p>这样一套下来<br>子对象 在原型链上<br>它获得了父对象的属性的拷贝，但是由于没有创建一个完整的父类实例，所以没有消耗多余的存储空间。</p>
-<p>javascript高级编程上还提到了两个方法<br>原型式继承<br>这种方法最后演变为了函数Object.create(sup实例)<br>上面已经说了Object.create()方法创建一个新对象，这个对象的<strong>proto</strong>为函数参数<br>所以和原型链继承没有本质区别。</p>
-<p>寄生式继承<br>单纯使用Object.create()仅仅是获得了一个<strong>proto</strong>指向某个实例的对象。<br>它没有自己特有的属性。<br>而寄生式继承即创建一个仅用于封装继承过程的函数。<br>在这个函数内部 用Object.create()获得了一个对象，然后赋给它一些独特的属性。<br>最后返回这个对象。<br>又new 方式调用 函数的特点。<br>是否使用new 调用这个封装继承过程的函数。得到的结果都是一致的。</p>
+<p>javascript高级编程上还提到了两个方法<br>原型式继承<br>这种方法最后演变为了函数Object.create(sup实例)<br>上面已经说了Object.create()方法创建一个新对象，这个对象的__proto__为函数参数<br>所以和原型链继承没有本质区别。</p>
+<p>寄生式继承<br>单纯使用Object.create()仅仅是获得了一个__proto__指向某个实例的对象。<br>它没有自己特有的属性。<br>而寄生式继承即创建一个仅用于封装继承过程的函数。<br>在这个函数内部 用Object.create()获得了一个对象，然后赋给它一些独特的属性。<br>最后返回这个对象。<br>又new 方式调用 函数的特点。<br>是否使用new 调用这个封装继承过程的函数。得到的结果都是一致的。</p>
 
       
 
