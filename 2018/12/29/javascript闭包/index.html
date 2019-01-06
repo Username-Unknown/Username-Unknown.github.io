@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/12 | Hexo</title>
+  <title>javascript 闭包 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2018/12/index.html">
+  <meta name="description" content="在javascript中获得闭包很简单在一个函数内部再定义一个函数 function foo(){     function bar(){     } } 但是闭包具体是上面哪一个部分 ，这反而是很回答的问题，因为定义不规范，人们的也认识不同;MDN在有关闭包的页面开头就说“闭包是函数和声明该函数的词法环境的组合”，意思是闭包是一个概念，类似的，javascript权威指南 第6版说，闭包就是函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript 闭包">
+<meta property="og:url" content="http://yoursite.com/2018/12/29/javascript闭包/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在javascript中获得闭包很简单在一个函数内部再定义一个函数 function foo(){     function bar(){     } } 但是闭包具体是上面哪一个部分 ，这反而是很回答的问题，因为定义不规范，人们的也认识不同;MDN在有关闭包的页面开头就说“闭包是函数和声明该函数的词法环境的组合”，意思是闭包是一个概念，类似的，javascript权威指南 第6版说，闭包就是函数">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-29T02:19:46.297Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="javascript 闭包">
+<meta name="twitter:description" content="在javascript中获得闭包很简单在一个函数内部再定义一个函数 function foo(){     function bar(){     } } 但是闭包具体是上面哪一个部分 ，这反而是很回答的问题，因为定义不规范，人们的也认识不同;MDN在有关闭包的页面开头就说“闭包是函数和声明该函数的词法环境的组合”，意思是闭包是一个概念，类似的，javascript权威指南 第6版说，闭包就是函数">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,157 +154,210 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-javascript闭包" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      javascript 闭包
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/29/javascript闭包/" class="archive-article-date">
+
+        
+        <a href="/2018/12/29/javascript闭包/" class="archive-article-date">
   	<time datetime="2018-12-29T00:44:45.067Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-29</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/29/javascript闭包/">javascript 闭包</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在javascript中获得闭包很简单<br>在一个函数内部再定义一个函数</p>
+<pre><code>function foo(){
+    function bar(){
+    }
+}
+</code></pre><p>但是闭包具体是上面哪一个部分 ，这反而是很回答的问题，因为定义不规范，人们的也认识不同;<br>MDN在有关闭包的页面开头就说“闭包是函数和声明该函数的词法环境的组合”，意思是闭包是一个概念，<br>类似的，javascript权威指南 第6版说，闭包就是函数和该函数作用域的组合。<br>但是在MDN的示例代码中又把一个函数声明注释为“闭包”</p>
+<p>有的人又说在内部函数内引用到了外部函数的变量才算闭包。<br>js高级程序设计第三版上说，闭包是指有权访问另一个函数作用域中的变量的函数。</p>
+<p>可以说是众说纷纭。<br><a href="https://www.cnblogs.com/xiaohuochai/p/5728577.html" title="深入理解闭包系列第一篇——到底什么才是闭包" target="_blank" rel="noopener">深入理解闭包系列第一篇——到底什么才是闭包 博客园:小火柴的蓝色理想</a></p>
+<p>至少本文的代码中存在闭包，但哪几个字母组成了闭包，不再讨论。</p>
+<p>我们要讲的是被内部函数引用到的变量发生了什么<br><a id="more"></a></p>
+<p>先做如下定义</p>
+<pre><code>var out;
+function sup(){
+    var a=0;
+    out= function(){
+        console.log(a);
+    }
+    return function(){
+        a++;
+    }
+}
+</code></pre><p>接下来分别执行</p>
+<pre><code>var add= sup();
+out();//输出0
+add();
+out();//输出1
+</code></pre><p>可以看出add和out操作了同一个值<br>如果是这样呢</p>
+<pre><code>var add= sup();
+sup();
+out();//输出0
+add();
+out();//输出0
+</code></pre><p>获得了add后再执行一次sup()；<br>out所指向的函数被更新了。由于没有用add接收第二次sup()的返回值，所以add没有更新。<br>add不再影响out的输出。<br>那么add操作的是什么</p>
+<p>如果是这样</p>
+<pre><code>var oldadd=sup();
+var oldout=out;
+var add=sup();
+oldadd(),oldadd(),oldadd(),oldout();//输出3
+add(),out();//输出1
+</code></pre><p>这次我们把第一次的out也保存下来，再第二次执行sup();<br>oldout依旧能输出，而且这个值能被oldadd影响，说明旧的a依旧存在，没有被sup()中的 var a=0覆盖;</p>
+<p>这么推理，不同次执行sup(),a所指向的内存地址时不同的。<br>形成闭包能够延长变量生存周期，是因为内部函数中的一个同名的变量名也指向这一片地址，<br>根据js垃圾回收机制，由于有了内部函数的变量名，在外部函数执行完成后，变量（内存）依旧是可达的，该变量（内存）不会被回收。</p>
+<p>定义内部函数并引用外部函数的变量，实际上是保留了一片内存区域。</p>
+<p>基于保存和访问变量这一特点，闭包可以有如下用法<br>缓存变量。</p>
+<p>访问控制和实现类<br>定义一个函数，函数内有各种 定义了各种变量<br>最后返回操作这些变量的方法的集合。</p>
+<p>这样就只能通过规定好得的方法来操作属性。<br>这样相当于实现了一个类的实例。</p>
+<p>如果返回的是一个对象，这个对象的属性是操作用的函数。<br>还可以用new 方式来调用包装函数，这样更类似 类的实现方式。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/12/29/javascript闭包/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/28/javascript实现继承/" class="archive-article-date">
-  	<time datetime="2018-12-28T14:43:39.094Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/01/06/箭头函数中的this指向/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          箭头函数中的this指向
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/28/javascript实现继承/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">javascript 实现继承</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/28/javascript实现继承/">javascript 实现继承</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/28/yilia头像设置/" class="archive-article-date">
-  	<time datetime="2018-12-28T11:33:25.226Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/28/yilia头像设置/">yilia头像设置</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/28/github page + hexo/" class="archive-article-date">
-  	<time datetime="2018-12-28T10:45:42.530Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/28/github page + hexo/">github pages + hexo</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/28/hello-world/" class="archive-article-date">
-  	<time datetime="2018-12-28T09:15:17.659Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/28/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -323,8 +380,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
