@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>居中2</title>
+		<meta charset="UTF-8"/>
+		<link rel="icon" href="data:image/ico;base64,aWNv">
+		<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+		<style>
+            body{
+                background-color:#C7EDCC;
+            }
+            body div *{
+                border:1px solid #f00;
+                margin:5px;
+            }
+		</style>
+		<script type="text/javascript"></script>
+	</head>
+	<body>
+        <div id='intro' style='width:80%;background:#fff;margin:0 auto;'>
+            在居中前，我们先来看一看那些是行内元素 哪些是块级元素 <br>
+            <a href="https://blog.csdn.net/cc18868876837/article/details/78060347">常用的块级元素（block）、行内元素（inline）以及行内块元素（inline-block）的解析 by 码飞_CC</a> <br>
+            块级元素 div p 三种列表的最外层 ol ul dl 以及它们的内层li dt dd 
+            html5中相当于给div添加了语意的header fotter nav
+                <div> 这是一个div</div>
+                <p>这是一个p</p>
+                <ol>这是一个ol
+                    <li>这是ol里的li</li>
+                </ol>
+                <ul>这是一个ul
+                    <li>这是ul里的li</li>
+                </ul>
+                <li>这是ol或ul外的li</li>
+                <li>这是ol或ul外的第二个li</li>
+                <h1>这是一个h1</h1>
+                <dl>这是一个dl
+                    <dt>这是dt</dt>
+                    <dd>这是dd</dd>
+                </dl>
+                <dt>这是dl外的dt</dt>
+                <dd>这是dl外的dd</dd>
+                <table>这是table
+                    <tr>这是tr
+                        <td>这是td1</td>
+                        <td>这是td2</td>
+                    </tr>
+                </table>
+                <header>这是header</header>
+                <nav>这是nav</nav>
+                <footer>这是footer</footer>
+                <form action="#">这是一个form</form>
+                <blockquote>
+                    这是块级引用blockquote
+                </blockquote>
+
+                <div>
+                  接下来是行内元素 <br>
+
+                  <span> span</span>
+                  
+                  <a href="#">a标签</a>
+                  <img src="#" alt="img" title='图片'> 
+                  各种用来改变文字的比如 <i>斜体i</i> <em>强调em</em>  <strong>加粗strong</strong>
+                  <big>字号加大big</big> 
+                  表单控件  <button>按钮是行内块</button> <input type="text" placeholder='input'>
+                  <select name="a" id="a">
+                    <option value="1">option1</option>
+                    <option value="2">option2</option>
+                    <option value="3">option3</option>
+                  </select> <label for="#">label</label>
+                  <textarea name="" id="" cols="30" rows="10"> textarea</textarea>
+                    上下标 <sub>下标sub</sub> <sup>上标sup</sup> <u>下划线u</u>
+                </div>
+
+
+        </div>
+
+        <div  style='width:80%;background:#fff;margin:50px auto;overflow:hidden'>
+            块级元素的水平居中 <br>
+            最常见的就是 想要定位居中的元素在宽度已知的情况 下设定 maring:0 auto; <br>
+            比如说现在这些内容所在的背景为白色的大块
+            <div style='display: table;margin:0 auto;'>
+                所在div宽度由内容撑开 <br>
+                填充填充填充填充填充填充填充填充填充填充填充填充填充填充填充填充填充填充填充填充填充填充填充填充填充填充填充填 <br>
+                注：想要div宽度由内容撑开 请设置float 或posititon absolute 或display:table并且不设置width  <br>
+                比如说现在这个红框包围的块display: table;margin:0 auto;它由子元素撑开，又在外部父容器中水平居中 <br>
+                
+                <div style='width:80%;background:#fff;margin:50px auto;''>
+                    该宽度为父元素80%的div用margin 居中
+                </div>
+                之前的一次讨论中，是将父元素定宽还是不定宽分开讨论的 <br>
+
+                现在看来，只要不是直接设置px的方法，父元素定宽与否不影响一个方法能否使用<br>
+                可以这么理解，因为要渲染子元素时父元素肯定已经定下来了,那么父元素总是定宽的 <br>
+                当父元素宽度是由子元素撑开，而需要居中的子元素为宽度最大者时<br>
+                只需要设置该子元素 左右margin一致 <br>
+                换个角度来看，当父元素宽度是由子元素撑开时，我们所做的不是在父元素中居中子元素，而是在子元素外部创建一个左右边距一致的边框<br>
+                比如下面的代码
+            </div>
+            <div style='float:left'>
+                <div style='width:80%;background:#fff;margin:0px auto;''>
+                    该宽度为父元素80%的div用margin auto 居中
+                </div>
+            </div>
+            <div style='float:left'>
+                <div style='float:left;background:#fff;margin:0px 20px;''>
+                    子元素宽度也由内容撑开 那么设置左右margin 为具体数值
+                </div>
+            </div>
+
+            <div style='width:80%;background:#fff;margin:20px auto;clear:both;overflow:hidden;display:flex;justify-content: center'>
+                   
+        
+                    <div style='float:left;margin:20px auto;'>
+                        父元素width:80%;background:#fff;margin:20px auto; <br>
+                        clear:both;overflow:hidden; 
+                        display:flex;justify-content: center <br>
+                        子元素由flaot来设置宽度由内容撑开 用margin:0 auto 就不行了 <br>
+                        可以父元素 display:flex;justify-content: center <br>
+                        不过只适用于只有这一个子元素的情况 <br>
+                        因为flex是把同一行内的块一起居中。<br>
+                        如果目标就是一起居中也可以用
+                    </div>
+            </div>
+
+            <div style='width:80%;height:150px;background:#fff;margin:20px auto;clear:both;position:relative;'>
+                   <p> 父元素width:80%;background:#fff;margin:20px auto;clear:both;overflow:hidden;</p>
+        
+                    <div style='position:absolute;left:50%; transform: translateX(-50%);'>
+                        要想使用 position:absolute;left:50%; transform: translateX(-50%); <br>
+                        由于absolute无法撑开父元素所以 父元还需设置足够大的高度
+                    </div>
+
+            </div>
+            <div style='width:80%;background:#fff;margin:20px auto;clear:both;position:relative;'>
+                <p> 父元素width:80%;background:#fff;margin:20px auto;clear:both;overflow:hidden;</p>
+     
+                 <div style='margin-left:50%; transform: translateX(-50%);'>
+                    也可以用 margin-left:50%来设置，然后设置
+                    transform: translateX(-50%); <br>
+                    这样就不用为了使用left而设置absolute，不用脱离文档流，父元素高度可以由子元素高度撑开
+                     
+                 </div>
+
+            </div>
+            <div style='width:80%;background:#fff;margin:20px auto;'>
+                    <div style='display: table;margin: 0 auto;'>
+                        display: table;margin: 0 auto; <br>
+                            子元素设置display: table; 也可以由内容撑开，<br> 
+                            而且不会像float和 absolute 一样脱离文档流，可以自己撑开高度。
+                    </div>
+            </div>
+        </div>
+        <div  style='width:80%;background:#fff;margin:50px auto;overflow:hidden'>
+            块级元素的竖直居中
+            <div style='width:80%;height:200px;position:relative;'>
+            <p>
+                因为是子元素绝对定位所以 上方有其他的也不影响
+            </p>
+                <div style="display: table;position:absolute; top: 0;  bottom: 0;margin-top:auto;margin-bottom:auto;">
+                    父元素定宽高，子元素display:table（高宽内容撑开）。position:absolute;<br>
+                    设置top:0;bottom:0;margin-top:auto;margin-bottom:auto;
+                </div>
+            </div>
+            <div style='width:80%;height:200px;position:relative;'>
+                    <div style="display: table;position:absolute;top:50%;transform: translateY(-50%);">
+                        父元素定宽高，子元素display:table（高宽内容撑开）。<br>
+                        position:absolute;top:50%;transform: translateY(-50%);<br>
+                        水平居中可以用margin-left:50%来避免absolute,  <br>
+                        但是竖直居中margin-top:50%;会让元素消失
+
+                    </div>
+            </div>
+            <div style='width:80%;height:200px;position:relative;display: flex;align-items:center;'>
+                <div style="display: table;">
+                    父元素定宽高，子元素display:table（高宽内容撑开）。<br>
+                    父元素display: flex;align-items:center;
+
+                </div>
+            </div>
+        </div>
+	<body>
+</html>
