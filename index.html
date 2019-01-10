@@ -152,6 +152,147 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-深拷贝的一些坑" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/10/深拷贝的一些坑/">一到深拷贝题目</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/10/深拷贝的一些坑/" class="archive-article-date">
+  	<time datetime="2019-01-10T01:52:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考文章<br><a href="https://juejin.im/post/5b235b726fb9a00e8a3e4e88" title="JavaScript深拷贝的一些坑" target="_blank" rel="noopener">JavaScript深拷贝的一些坑 作者：YDJFE</a></p>
+<p>题目要求<br>使用递归来实现一个深度克隆，可以复制一个目标对象，返回一个完整拷贝<br>被复制的对象类型会被限制为数字、字符串、布尔、日期、数组、Object对象。不会包含函数、正则对象等</p>
+<p>不管要求，先从最基础的深拷贝开始，</p>
+<p>逻辑，判断参数是否是一个对象。<br>    不是，将参数直接返回。<br>    是，遍历参数属性，对属性进行深拷贝</p>
+<pre><code>function clone(src) {
+    // your implement
+    if( typeof(src)!=&quot;object&quot;)
+        return src;
+    var rescon={};//result container
+    var key;
+    for( key in src){
+        rescon[key]=cloneObject(src[key])
+    }
+    return rescon
+}
+</code></pre><p>感觉哪里不对。忘了数组，虽然都可以用[]访问，但是for key in 中的key是不同的。<br>    var srcObj = [“hello”, “hi”]<br>    var tarObj = clone(srcObj);</p>
+<pre><code>//查看控制台
+srcObj
+    (2) [&quot;hello&quot;, &quot;hi&quot;]
+    0: &quot;hello&quot;
+    1: &quot;hi&quot;
+    length: 2
+    __proto__: Array(0)
+
+tarObj
+    {0: &quot;hello&quot;, 1: &quot;hi&quot;}
+    0: &quot;hello&quot;
+    1: &quot;hi&quot;
+    __proto__: Object
+</code></pre><p>所以在定义存放结果的变量时一般。</p>
+<pre><code>var rescon=Array.isArray(src) ? [] : {};
+</code></pre><p>还有一点  typeof null //“object”<br>判断条件为 </p>
+<pre><code>if( typeof(src)!=&quot;object&quot; || src === null )
+</code></pre><p>否则</p>
+<pre><code>var a=clone(null)
+a//{}
+</code></pre><p>现在尝试克隆Date</p>
+<pre><code>var a=new Date()
+var b=clone(a);
+a//xxxxxxxxxxxxxxxxxxxxxxxx (中国标准时间)
+b//{}
+</code></pre><p>看来题目要求中的 “日期”不是随便写上去的。<br>根据参考文章，特殊类型只能特殊处理</p>
+<pre><code>if(src instanceof Date)
+    return new Date(src.getTime())
+</code></pre><p>所以最终版是这样的</p>
+<pre><code>function clone(src) {
+    // your implement
+    if( typeof(src)!=&quot;object&quot; || src === null )
+        return src;
+    var rescon={};//result container
+    var key;
+    for( key in src){
+        rescon[key]=cloneObject(src[key])
+    }
+    return rescon
+}
+</code></pre><p>测试用例</p>
+<pre><code>var date= new Date();
+var src={
+    a:[1,2,3,4],
+    b:date,
+    c:{
+        a:[&apos;foo&apos;,&apos;bar&apos;],
+；        b:&apos;foobar&apos;,
+        c:null
+    }
+}
+
+var tar=clone(src)
+</code></pre><p>对于特殊类型特殊处理，还可以利用 constructor</p>
+<pre><code>//判断是对象后
+var Constructor = src.constructor
+switch(Constructor){
+    case RegExp:
+        return new Constructor(obj)
+    case Date:
+        return = new Constructor(obj.getTime())
+    default:
+}
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/10/深拷贝的一些坑/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-function-foo-and-var-foo-function" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -172,11 +313,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        <p>两者之间区别很容易想到的一点就是变量提升。<br>那两个foo之间有没有区别呢。<br>var foo = function(){};的foo是一个变量名，是可以随意赋值的。<br>前者呢。</p>
+<pre><code>function foo() {}
+foo=1;
+foo//17
+</code></pre><p>看起来函数名也是一个变量，那么和后一种写法除了提升没有其他区别？<br>全局定义的函数其实是定义在window上，来查看一下window<br>
+        
+          <a class="article-more-a" href="/2019/01/09/function-foo-and-var-foo-function/#more">more >></a>
         
       
 
       
-    </div>
+    </p></div>
     <div class="article-info article-info-index">
       
       

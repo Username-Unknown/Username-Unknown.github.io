@@ -8,14 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>function foo() {} and var foo = function() {} | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="两者之间区别很容易想到的一点就是变量提升。那两个foo之间有没有区别呢。var foo = function(){};的foo是一个变量名，是可以随意赋值的。前者呢。 function foo() {} foo=1; foo//17 看起来函数名也是一个变量，那么和后一种写法除了提升没有其他区别？全局定义的函数其实是定义在window上，来查看一下window">
+<meta property="og:type" content="article">
 <meta property="og:title" content="function foo() {} and var foo = function() {}">
 <meta property="og:url" content="http://yoursite.com/2019/01/09/function-foo-and-var-foo-function/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="两者之间区别很容易想到的一点就是变量提升。那两个foo之间有没有区别呢。var foo = function(){};的foo是一个变量名，是可以随意赋值的。前者呢。 function foo() {} foo=1; foo//17 看起来函数名也是一个变量，那么和后一种写法除了提升没有其他区别？全局定义的函数其实是定义在window上，来查看一下window">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-09T09:34:04.009Z">
+<meta property="og:updated_time" content="2019-01-09T10:41:16.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="function foo() {} and var foo = function() {}">
+<meta name="twitter:description" content="两者之间区别很容易想到的一点就是变量提升。那两个foo之间有没有区别呢。var foo = function(){};的foo是一个变量名，是可以随意赋值的。前者呢。 function foo() {} foo=1; foo//17 看起来函数名也是一个变量，那么和后一种写法除了提升没有其他区别？全局定义的函数其实是定义在window上，来查看一下window">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -171,7 +174,58 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>两者之间区别很容易想到的一点就是变量提升。<br>那两个foo之间有没有区别呢。<br>var foo = function(){};的foo是一个变量名，是可以随意赋值的。<br>前者呢。</p>
+<pre><code>function foo() {}
+foo=1;
+foo//17
+</code></pre><p>看起来函数名也是一个变量，那么和后一种写法除了提升没有其他区别？<br>全局定义的函数其实是定义在window上，来查看一下window<br><a id="more"></a></p>
+<pre><code>function foo() {}
+window
+/*
+...
+foo: ƒ foo()
+...
+*/
+</code></pre><p>也许两者存储方式有区别</p>
+<pre><code>var foo = function() {}
+window
+/*
+...
+foo: ƒ()
+...
+*/
+</code></pre><p>看来function foo() {}是 一个有名字的函数，同时有一个同名的变量保存它，<br>那么给这个变量赋其他值后发生了什么。</p>
+<pre><code>function foo() {console.log(&apos;1&apos;)}
+var bar=foo;
+foo=1;
+window
+/*
+...
+bar: ƒ foo() //再查看详细
+    arguments: null
+    caller: null
+    length: 0
+    name: &quot;foo&quot;
+    prototype: {constructor: ƒ}
+    __proto__: ƒ ()
+...
+foo: 1
+*/
+</code></pre><p>看来”函数名”只是一个属性。用function foo() {}方式定义函数，运行环境对其进行提升并给了一个同名变量。<br>我们调用函数用的是指向函数的变量名，而不是函数名。</p>
+<p>那还有一种写法<br>var bar=function foo(){}</p>
+<pre><code>var bar=function foo(){}
+window
+    /*
+...
+bar: ƒ foo() //再查看详细
+...
+*/
+</code></pre><p>这时候，并没有一个叫foo的变量，是无法用foo()调用的。<br>var 有提升，function 有提升，那这个语句会被整体提升吗。</p>
+<pre><code>bar();
+var bar=function foo(){console.log(&apos;1&apos;)}
+Uncaught TypeError: bar is not a function
+</code></pre><p>看来当function 作为右引用时，没有提升，也没有同名变量被创建。</p>
+
       
 
       
@@ -263,6 +317,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/01/10/深拷贝的一些坑/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          一到深拷贝题目
+        
+      </div>
+    </a>
   
   
     <a href="/2019/01/08/masonry使用/" id="article-nav-older" class="article-nav-link-wrap">
