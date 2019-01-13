@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>node+ajax的一些坑 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="道理都懂，实际上实践一次 还是要遇到些问题的 node方面，之前传输静态文件都是自己写的。这次用一下插件 node-static下载，引入,使用 //cli npm i node-static --save-dev //server.js var http = require(&amp;quot;http&amp;quot;);    var static = require(&amp;apos;node-static&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node+ajax的一些坑">
+<meta property="og:url" content="http://yoursite.com/2019/01/12/node-ajax的一些坑/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="道理都懂，实际上实践一次 还是要遇到些问题的 node方面，之前传输静态文件都是自己写的。这次用一下插件 node-static下载，引入,使用 //cli npm i node-static --save-dev //server.js var http = require(&amp;quot;http&amp;quot;);    var static = require(&amp;apos;node-static&amp;">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-13T01:22:05.223Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="node+ajax的一些坑">
+<meta name="twitter:description" content="道理都懂，实际上实践一次 还是要遇到些问题的 node方面，之前传输静态文件都是自己写的。这次用一下插件 node-static下载，引入,使用 //cli npm i node-static --save-dev //server.js var http = require(&amp;quot;http&amp;quot;);    var static = require(&amp;apos;node-static&amp;">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,16 +154,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-node-ajax的一些坑" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+            <article id="post-node-ajax的一些坑" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/12/node-ajax的一些坑/">node+ajax的一些坑</a>
+    <h1 class="article-title" itemprop="name">
+      node+ajax的一些坑
     </h1>
   
 
@@ -213,6 +215,27 @@ resource.listen(8080, function(){                      // 监听8080端口
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -220,16 +243,75 @@ resource.listen(8080, function(){                      // 监听8080端口
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/12/node-ajax的一些坑/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/01/12/node-ajax的一些坑/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/10/深拷贝的一些坑/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">一道深拷贝题目</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -249,633 +331,14 @@ resource.listen(8080, function(){                      // 监听8080端口
 
 
 
-
-  
-    <article id="post-深拷贝的一些坑" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/10/深拷贝的一些坑/">一道深拷贝题目</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/10/深拷贝的一些坑/" class="archive-article-date">
-  	<time datetime="2019-01-10T01:52:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>参考文章<br><a href="https://juejin.im/post/5b235b726fb9a00e8a3e4e88" title="JavaScript深拷贝的一些坑" target="_blank" rel="noopener">JavaScript深拷贝的一些坑 作者：YDJFE</a></p>
-<p>题目要求<br>使用递归来实现一个深度克隆，可以复制一个目标对象，返回一个完整拷贝<br>被复制的对象类型会被限制为数字、字符串、布尔、日期、数组、Object对象。不会包含函数、正则对象等</p>
-<p>不管要求，先从最基础的深拷贝开始，</p>
-<p>逻辑，判断参数是否是一个对象。<br>    不是，将参数直接返回。<br>    是，遍历参数属性，对属性进行深拷贝</p>
-<pre><code>function clone(src) {
-    // your implement
-    if( typeof(src)!=&quot;object&quot;)
-        return src;
-    var rescon={};//result container
-    var key;
-    for( key in src){
-        rescon[key]=cloneObject(src[key])
-    }
-    return rescon
-}
-</code></pre><p>感觉哪里不对。<br>
-        
-          <a class="article-more-a" href="/2019/01/10/深拷贝的一些坑/#more">more >></a>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/10/深拷贝的一些坑/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-function-foo-and-var-foo-function" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/09/function-foo-and-var-foo-function/">function foo() {} and var foo = function() {}</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/09/function-foo-and-var-foo-function/" class="archive-article-date">
-  	<time datetime="2019-01-09T09:34:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>两者之间区别很容易想到的一点就是变量提升。<br>那两个foo之间有没有区别呢。<br>var foo = function(){};的foo是一个变量名，是可以随意赋值的。<br>前者呢。</p>
-<pre><code>function foo() {}
-foo=1;
-foo//17
-</code></pre><p>看起来函数名也是一个变量，那么和后一种写法除了提升没有其他区别？<br>全局定义的函数其实是定义在window上，来查看一下window<br>
-        
-          <a class="article-more-a" href="/2019/01/09/function-foo-and-var-foo-function/#more">more >></a>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/09/function-foo-and-var-foo-function/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-masonry使用" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/08/masonry使用/">masonry使用</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/08/masonry使用/" class="archive-article-date">
-  	<time datetime="2019-01-08T03:18:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>做布局练习时遇到这么个要求<br><img src="/2019/01/08/masonry使用/目标.jpg" title="目标"></p>
-<p>高宽都不等的瀑布流，用css是无法实现了。只能js了<br>但现在是在做布局练习，还是不要写js了。<br>用库，搜索找到Masonry.<br>简便为主 cdn<br><a href="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js&quot;" target="_blank" rel="noopener">https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js&quot;</a></p>
-<p>按照官方入门指南<br>masonry使用要注意 html,css,js三方面的配置。<br>
-        
-          <a class="article-more-a" href="/2019/01/08/masonry使用/#more">more >></a>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/08/masonry使用/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-测试到本地资源的连接" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/06/测试到本地资源的连接/">hexo到本地资源的连接</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/06/测试到本地资源的连接/" class="archive-article-date">
-  	<time datetime="2019-01-06T12:43:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="./otherpage/居中.html" title="居中">居中</a><br>路径自然是相对于页面所在，但hexo为同一份md生成了两份内容，一个份在首页的预览，一个是点击展开单独页面。<br>所以在这两处写相对路径，起始目录是不同的，所以在首页能打开上面的连接，从详细页面是访问不到的。<br>向一个连解决，那么准备两份文件，或者写绝度路径。</p>
-<p>既然传到了远端服务器 那么就有url了</p>
-<p><a href="https://username-unknown.github.io/otherpage/居中.html" title="居中" target="_blank" rel="noopener">居中</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/06/测试到本地资源的连接/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-箭头函数中的this指向" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/06/箭头函数中的this指向/">箭头函数中的this指向</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/06/箭头函数中的this指向/" class="archive-article-date">
-  	<time datetime="2019-01-06T06:49:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>箭头函数的this是从定义它的环境继承而来;<br>箭头函数的this与定义它的环境的this指向同一处。</p>
-<p>例子<br>var c=11;<br>var a={<br>    a:this,<br>    b:() =&gt; console.log(this.c)<br>}<br>console.log(a.a)<br>a.b();</p>
-<p>输出为<br>
-        
-          <a class="article-more-a" href="/2019/01/06/箭头函数中的this指向/#more">more >></a>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/06/箭头函数中的this指向/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-javascript闭包" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/29/javascript闭包/">javascript 闭包</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/29/javascript闭包/" class="archive-article-date">
-  	<time datetime="2018-12-29T00:44:45.067Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在javascript中获得闭包很简单<br>在一个函数内部再定义一个函数</p>
-<pre><code>function foo(){
-    function bar(){
-    }
-}
-</code></pre><p>但是闭包具体是上面哪一个部分 ，这反而是很回答的问题，因为定义不规范，人们的也认识不同;<br>MDN在有关闭包的页面开头就说“闭包是函数和声明该函数的词法环境的组合”，意思是闭包是一个概念，<br>类似的，javascript权威指南 第6版说，闭包就是函数和该函数作用域的组合。<br>但是在MDN的示例代码中又把一个函数声明注释为“闭包”</p>
-<p>有的人又说在内部函数内引用到了外部函数的变量才算闭包。<br>js高级程序设计第三版上说，闭包是指有权访问另一个函数作用域中的变量的函数。</p>
-<p>可以说是众说纷纭。<br><a href="https://www.cnblogs.com/xiaohuochai/p/5728577.html" title="深入理解闭包系列第一篇——到底什么才是闭包" target="_blank" rel="noopener">深入理解闭包系列第一篇——到底什么才是闭包 博客园:小火柴的蓝色理想</a></p>
-<p>至少本文的代码中存在闭包，但哪几个字母组成了闭包，不再讨论。</p>
-<p>我们要讲的是被内部函数引用到的变量发生了什么<br>
-        
-          <a class="article-more-a" href="/2018/12/29/javascript闭包/#more">more >></a>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/29/javascript闭包/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-javascript实现继承" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/28/javascript实现继承/">javascript 实现继承</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/28/javascript实现继承/" class="archive-article-date">
-  	<time datetime="2018-12-28T14:43:39.094Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>继承要实现的效果是子类实例能够“使用”父类的属性。</p>
-<p>实现方式上可以分为</p>
-<p>1.sub获得sup的属性的访问权<br>2.sub获得sup的属性的拷贝</p>
-<p>结论就是：<br>想要获得访问权就设置__proto__的指向。<br>想要拷贝那就赋值，不过要时刻记得 引用数据类型 的赋值的实质。</p>
-<p>还要讨论的话无非是 讲一讲如何设置__proto__。<br>和如何进行拷贝。</p>
-<p>接下来都是些 为了复杂而复杂的命名过程。<br>
-        
-          <a class="article-more-a" href="/2018/12/28/javascript实现继承/#more">more >></a>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/28/javascript实现继承/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-yilia头像设置" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/28/yilia头像设置/">yilia头像设置</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/28/yilia头像设置/" class="archive-article-date">
-  	<time datetime="2018-12-28T11:33:25.226Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>yilia是一个hexo主题，<br>头像配置在\themes\yilia_config.yml 文件下 avatar项<br>要注意两点<br>1.图片url<br>如果是用的网络图片 应该没有问题<br>如果是本地图片 其路径起始在 根目录下的source文件夹下<br>也就是说 如果该项的值为 /assets/avatar.jpeg<br>对应文件为 source/assets/avatar.jpeg<br>2.空格<br>要留出一个空格<br>avatar: /assets/avatar.jpeg<br>不然hexo g 会报错</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/28/yilia头像设置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-github page + hexo" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/28/github page + hexo/">github pages + hexo</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/28/github page + hexo/" class="archive-article-date">
-  	<time datetime="2018-12-28T10:45:42.530Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>当用户创建了一个名为 “用户名.github.io”的仓库时，github会自动启用github pages<br>当访问将该仓库名当作域名访问时， 会访问到 该仓库下 的index.html 网页<br>相当于一个静态网站托管服务。</p>
-<p>hexo是一个静态网站生成器，能通过一些简单的操作来生成博客网站，<br>而不用自己从头开始编写html,css和组织文件结构。只需要专注于写文章。<br>当然由于整个网站都是属于自己的，你也可以自己搞些花样<br>
-        
-          <a class="article-more-a" href="/2018/12/28/github page + hexo/#more">more >></a>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/28/github page + hexo/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -898,8 +361,8 @@ foo//17
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
