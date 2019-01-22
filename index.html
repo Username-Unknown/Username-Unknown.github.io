@@ -152,6 +152,72 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-任务管理系统" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/22/任务管理系统/">任务管理系统原生js</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/22/任务管理系统/" class="archive-article-date">
+  	<time datetime="2019-01-22T02:18:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>来自于<a href="https://github.com/baidu-ife/ife/tree/master/2015_spring/task/task0003" target="_blank" rel="noopener">ife2015 ife 2015 spring task3</a></p>
+<p><img src="https://github.com/baidu-ife/ife/raw/master/2015_spring/task/task0003/img/design.jpg" alt="设计稿"><br>
+        
+          <a class="article-more-a" href="/2019/01/22/任务管理系统/#more">more >></a>
+        
+      
+
+      
+    </p></div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/22/任务管理系统/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-node-ajax的一些坑" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -173,47 +239,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>道理都懂，实际上实践一次 还是要遇到些问题的</p>
-<p>node方面，之前传输静态文件都是自己写的。<br>这次用一下插件 node-static<br>下载，引入,使用</p>
-<pre><code>//cli
-npm i node-static --save-dev
-//server.js
-var http = require(&quot;http&quot;);   
-var static = require(&apos;node-static&apos;); 
-var staticServer = new static.Server(&apos;./public&apos;); // 将public目录作为静态资源目录
-
-function handleStaticRequest(req, res) {      // 处理静态资源请求
-  console.log(&apos;静态请求&apos;)                         
-  req.addListener(&apos;end&apos;, function () {            // 监听HTTP请求结束事件
-      staticServer.serve(req, res);               // 提供静态资源服务
-  }).resume();
-}
-
-var resource = http.createServer(function(req, res) {  // 创建WEB服务器
-  handleStaticRequest(req, res);                  // 处理静态资源请求
-});
-resource.listen(8080, function(){                      // 监听8080端口
-    console.log(&quot;listen at port http://localhost:8080&quot;);
-});
-</code></pre><p>想到如果要处理ajax请求，那就要解析url，根据地址分别处理。可是用node-static就是不想干这个事啊。<br>那干脆两个监听不同的端口，用另一个端口来处理ajax请求。<br>然后同源问题来了，因为页面是通过8080端口得到的，所以从客户端发送的请求也是来自8080的。<br>解决问题很简单，在处理ajax的程序里</p>
-<pre><code>res.writeHead(200, {
-    &apos;Access-Control-Allow-Origin&apos;:&apos;http://localhost:8080&apos;
-}
-</code></pre><p>但是想到一个问题，如果想要同时允许多个来源怎么写。<br>难道是</p>
-<pre><code>&apos;Access-Control-Allow-Origin&apos;:&apos;address1;address2;....&apos;
-</code></pre><p>当然不是这样啦。参考<a href="https://www.fujieace.com/javascript/access-control-allow-origin-2.html" title="跨域 解决办法" target="_blank" rel="noopener">跨域 解决办法：利用 Access-Control-Allow-Origin</a>中多个域名设置部分<br>首先利用req.headers.origin得到请求来源。<br>检查这个值是否是允许的。<br>如果是就写入 </p>
-<pre><code>&apos;Access-Control-Allow-Origin&apos;:req.headers.origin
-</code></pre><p>在网页端。<br>监听input标签的input事件，进行ajax。不过每输入一个字符都会触发input事件，所以想做一个防抖：<br>函数一开始检测定时器是否存在，存在则clearTimeout。<br>最后settimeout。注意不能向settimeout的回调函数传递参数。<br>后来发现把input标签的输入全部删除，应该做特殊处理，也就是input.value==’’时直接return。</p>
-<p>做提示搜索，要求服务器传回数组的tostring()就好了。<br>但是在做的时候回想起之前传递json时事，好像可以直接接收到对象，而不用Json.parse(接收到字符串)。<br>但是忘记了具体做法，于是一阵麻烦还又踩了坑。</p>
-<p>对XMLHttpRequest对象设置 .responseType=’json’<br>在接收时直接 XMLHttpRequest.response获得对象。<br>这种方法不要求服务器 ‘Content-Type’: ‘json’.<br>同时再想访问ajax.responseText会出错。</p>
-<p>之前没有检测input为空时有一个怪现象。<br>当清空所有的输入，收到的返回值却是服务器所存储的所有内容所组成的字符串。<br>原因有两点，一当input为空，其value属性为“”，<br>也就是客户端将空字符串当作参数发送。</p>
-<p>服务器端，检验参数是否位于字符串数组某一个元素开头时使用的方法是。</p>
-<pre><code>if(element.indexOf(xxx)==0)
-</code></pre><p>每每想到当indexOf的参数为’’时也返回0。</p>
-
+<p>node方面，之前传输静态文件都是自己写的。<br>这次用一下插件 node-static<br>
+        
+          <a class="article-more-a" href="/2019/01/12/node-ajax的一些坑/#more">more >></a>
+        
       
 
       
-    </div>
+    </p></div>
     <div class="article-info article-info-index">
       
       
@@ -777,72 +810,6 @@ foo//17
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/12/28/yilia头像设置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-github page + hexo" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/28/github page + hexo/">github pages + hexo</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/28/github page + hexo/" class="archive-article-date">
-  	<time datetime="2018-12-28T10:45:42.530Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>当用户创建了一个名为 “用户名.github.io”的仓库时，github会自动启用github pages<br>当访问将该仓库名当作域名访问时， 会访问到 该仓库下 的index.html 网页<br>相当于一个静态网站托管服务。</p>
-<p>hexo是一个静态网站生成器，能通过一些简单的操作来生成博客网站，<br>而不用自己从头开始编写html,css和组织文件结构。只需要专注于写文章。<br>当然由于整个网站都是属于自己的，你也可以自己搞些花样<br>
-        
-          <a class="article-more-a" href="/2018/12/28/github page + hexo/#more">more >></a>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/28/github page + hexo/">展开全文 >></a>
         </p>
       
 

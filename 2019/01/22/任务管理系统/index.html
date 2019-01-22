@@ -6,19 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>function foo() {} and var foo = function() {} | Hexo</title>
+  <title>任务管理系统原生js | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="两者之间区别很容易想到的一点就是变量提升。那两个foo之间有没有区别呢。var foo = function(){};的foo是一个变量名，是可以随意赋值的。前者呢。 function foo() {} foo=1; foo//17 看起来函数名也是一个变量，那么和后一种写法除了提升没有其他区别？全局定义的函数其实是定义在window上，来查看一下window">
+  <meta name="description" content="来自于ife2015 ife 2015 spring task3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="function foo() {} and var foo = function() {}">
-<meta property="og:url" content="http://yoursite.com/2019/01/09/function-foo-and-var-foo-function/index.html">
+<meta property="og:title" content="任务管理系统原生js">
+<meta property="og:url" content="http://yoursite.com/2019/01/22/任务管理系统/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="两者之间区别很容易想到的一点就是变量提升。那两个foo之间有没有区别呢。var foo = function(){};的foo是一个变量名，是可以随意赋值的。前者呢。 function foo() {} foo=1; foo//17 看起来函数名也是一个变量，那么和后一种写法除了提升没有其他区别？全局定义的函数其实是定义在window上，来查看一下window">
+<meta property="og:description" content="来自于ife2015 ife 2015 spring task3">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-22T05:21:04.345Z">
+<meta property="og:image" content="https://github.com/baidu-ife/ife/raw/master/2015_spring/task/task0003/img/design.jpg">
+<meta property="og:updated_time" content="2019-01-22T10:11:06.583Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="function foo() {} and var foo = function() {}">
-<meta name="twitter:description" content="两者之间区别很容易想到的一点就是变量提升。那两个foo之间有没有区别呢。var foo = function(){};的foo是一个变量名，是可以随意赋值的。前者呢。 function foo() {} foo=1; foo//17 看起来函数名也是一个变量，那么和后一种写法除了提升没有其他区别？全局定义的函数其实是定义在window上，来查看一下window">
+<meta name="twitter:title" content="任务管理系统原生js">
+<meta name="twitter:description" content="来自于ife2015 ife 2015 spring task3">
+<meta name="twitter:image" content="https://github.com/baidu-ife/ife/raw/master/2015_spring/task/task0003/img/design.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,77 +156,70 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-function-foo-and-var-foo-function" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-任务管理系统" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      function foo() {} and var foo = function() {}
+      任务管理系统原生js
     </h1>
   
 
         
-        <a href="/2019/01/09/function-foo-and-var-foo-function/" class="archive-article-date">
-  	<time datetime="2019-01-09T09:34:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-09</time>
+        <a href="/2019/01/22/任务管理系统/" class="archive-article-date">
+  	<time datetime="2019-01-22T02:18:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>两者之间区别很容易想到的一点就是变量提升。<br>那两个foo之间有没有区别呢。<br>var foo = function(){};的foo是一个变量名，是可以随意赋值的。<br>前者呢。</p>
-<pre><code>function foo() {}
-foo=1;
-foo//17
-</code></pre><p>看起来函数名也是一个变量，那么和后一种写法除了提升没有其他区别？<br>全局定义的函数其实是定义在window上，来查看一下window<br><a id="more"></a></p>
-<pre><code>function foo() {}
-window
-/*
-...
-foo: ƒ foo()
-...
-*/
-</code></pre><p>也许两者存储方式有区别</p>
-<pre><code>var foo = function() {}
-window
-/*
-...
-foo: ƒ()
-...
-*/
-</code></pre><p>看来function foo() {}是 一个有名字的函数，同时有一个同名的变量保存它，<br>那么给这个变量赋其他值后发生了什么。</p>
-<pre><code>function foo() {console.log(&apos;1&apos;)}
-var bar=foo;
-foo=1;
-window
-/*
-...
-bar: ƒ foo() //再查看详细
-    arguments: null
-    caller: null
-    length: 0
-    name: &quot;foo&quot;
-    prototype: {constructor: ƒ}
-    __proto__: ƒ ()
-...
-foo: 1
-*/
-</code></pre><p>看来”函数名”只是一个属性。用function foo() {}方式定义函数，运行环境对其进行提升并给了一个同名变量。<br>我们调用函数用的是指向函数的变量名，而不是函数名。</p>
-<p>那还有一种写法<br>var bar=function foo(){}</p>
-<pre><code>var bar=function foo(){}
-window
-    /*
-...
-bar: ƒ foo() //再查看详细
-...
-*/
-</code></pre><p>这时候，并没有一个叫foo的变量，是无法用foo()调用的。<br>var 有提升，function 有提升，那这个语句会被整体提升吗。</p>
-<pre><code>bar();
-var bar=function foo(){console.log(&apos;1&apos;)}
-Uncaught TypeError: bar is not a function
-</code></pre><p>看来当function 作为右引用时，没有提升，也没有同名变量被创建。</p>
+        <p>来自于<a href="https://github.com/baidu-ife/ife/tree/master/2015_spring/task/task0003" target="_blank" rel="noopener">ife2015 ife 2015 spring task3</a></p>
+<p><img src="https://github.com/baidu-ife/ife/raw/master/2015_spring/task/task0003/img/design.jpg" alt="设计稿"><br><a id="more"></a><br>要求使用本地存储，选用localStorage。<br>因为数据多级嵌套，所以使用一个对象数组来存储顶层的数据，然后每一个对象有有一个对象数组来存储下一层数据。<br>由于localStorage只能存储string，<br>所以存储时</p>
+<pre><code>var storage=window.localStorage;//获取storage对象
+storage[&apos;project&apos;]=JSON.stringify(data);
+</code></pre><p>网页初始化时获取数据</p>
+<pre><code>var data=JSON.parse(storage.getItem(&quot;project&quot;))//为了方便，这里将data声明为全局对象。
+</code></pre><p>具体数据结构</p>
+<pre><code>[//数组
+    {//第一级 ,
+        &quot;name&quot;:&quot;ifeproject&quot;,//名字
+        &quot;value&quot;:[//用于存储下一级数据的数组
+            {//第二级
+                &quot;name&quot;:&quot;文件名&quot;,//名字
+                &quot;value&quot;:[
+                            {//第三级,任务
+                                &quot;name&quot;:&quot;todo1&quot;,
+                                &quot;done&quot;:1,//任务是否完成的标识
+                                &quot;date&quot;:&quot;2019-2-11&quot;,
+                                &quot;value&quot;:&quot;完成编码工作&quot;
+                            },
+                        ]
+            }
+        ]
+    }
+}
+</code></pre><p>为了操作简便，再设置三个全局变量currentFirst,curretnSecond,currentThird,分别指向当前选中的对应层级的对象。<br>总的逻辑是，左中右三栏，对应三个层级的数据。<br>打开网页时，再左栏每个第一级对象绘制一个ul，每个ul下第一个标签为文本标签(h或p)存放一级对象的名称,<br>然后之后的li标签内容放该一级对象存储的二级对象的名字。<br>再左栏做事件代理，获取点击li标签的事件，根据该li标签所在的ul下第一个标签的内容，查找一级对象。<br>然后根据li标签自己的名字，在查找到的第一级对象中找到对应的二级对象。<br>找到二级对象后，在中栏绘制所包含的三级对象的列表。<br>同样做事件代理，选择三级对象对应的标签后，在右栏绘制详细。</p>
+<p>接下来说一说遇到的问题。<br>因为添加项目或任务做成了独立的按键，点击了按钮后就失去了上次点选的标签的信息。<br>所以设置了三个currentFirst,curretnSecond,currentThird变量，每次查找到的对象都存入对应变量。<br>增加内容直接在currentxxx中操作。</p>
+<p>####日期聚类和排序。<br>在绘制中栏时，先设置一个空的数组store。该数组的元素应该为一个对象。该对象有两个属性，一个属性存储时间，<br>一个属性为数组，存储三级对象。<br>在遍历二级对象存储的三级对象时，检查每个三级对象的’date’属性，查找store中是否存在同date的对象，<br>如果有则放入该对象的数组。否则新建对象，设置时间为该三级对象的’date’，并将三级对象放入数组。</p>
+<p>遍历完后，排序。这里的排序是‘根据对象的某个属性进行排序’，需要写一个排序的函数sortRule<br>sotre.sort(sortRule)，</p>
+<pre><code>function sortrule(a,b){
+    if(a[&apos;name&apos;]&gt;=b[&apos;name&apos;]){
+        return 1;
+    }
+    return -1;
+}
+// 若a 应该出现在 b 之前，则返回一个小于 0 的值。 
+//若a 应该出现在 b 之后，则返回一个大于 0 的值 
+</code></pre><p>排序完成后，按顺序绘制store内容。</p>
+<p>###显示已完成、未完成、所有<br>绘制中间栏内容是用一个函数buildTaskList完成的。<br>希望能够向它传入一个参数来控制显示。但是不想用 switch 参数的方式写三种判断。<br>而是用 if(标识==参数)来判断是否需要显示。<br>一开始存储任务完成状态的标识是用的布尔。很很自然得想到了参数传递布尔值。<br>但是已完成、未完成、所有是三种，而布尔值只有true和false。<br>一时间没想到办法。但后来想到显示所有就是无需判断。<br>再利用 0==false,和非零==true,参数用数字。<br>那么<br>if(参数&gt;=0){<br>    if(标识!==参数){<br>        continue;<br>    }<br>}<br>…..<br>这样显示全部时，传入负数数就能跳过判断。</p>
+<p>###css方面<br>设计稿上按钮放在最下面，同时要求上又说当高度小于一定值时，主题内容出现滚动条。<br>如果用定位将按钮放在最下面那么，当出现滚动条，按钮会进入到内容区域。<br>那么应该让主题内容自动占据剩余空间，并设置min-height和overflow:auto;<br>自动占据剩余空间，也就是flex-grow;同时应该为其他元素设置flex-grow:0 flex-shrink:0 不让它们变大，也不让变小;</p>
+<p>##坑<br>用prompt获取新建项目的名称，但是在promt的弹出窗中选择取消不会使得调用promt()的函数立刻返回。<br>而是promt返回null,同时promt弹出窗中不进行输入点击确定会得到’’;</p>
+<p>做好了整体后，添加在项目名旁边显示任务数量的功能，方法是做一个span 里边放数量然后appenChild在 项目对应标签上.</p>
+<pre><code>&lt;h2&gt;项目名称&lt;span&gt;(11)&lt;/span&gt;&lt;/h2&gt;
+</code></pre><p>但是刷新网页查看效果时出了问题。原因是查找对象所用的名字是用innertext得到的。但是innertext也会得到子节点的文本。<br>之前得到的是’项目名称’,现在得到的是’项目名称(任务数量)’。<br>如果想要继续使用innertext属性，那么就要修改标签结构。把项目名称和任务数量放在两个同级的标签。<br>但是这样做会要改写很多程序。<br>想到可以通过文本节点来解决。<br>用.childNodes[0]来获取第一个节点，在这里应该是一个文本节点，获取文本节点的内容用.data</p>
 
       
 
@@ -304,7 +299,7 @@ Uncaught TypeError: bar is not a function
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/01/09/function-foo-and-var-foo-function/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/01/22/任务管理系统/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -318,18 +313,9 @@ Uncaught TypeError: bar is not a function
   
 <nav id="article-nav">
   
-    <a href="/2019/01/10/深拷贝的一些坑/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          一道深拷贝题目
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/01/08/masonry使用/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">masonry使用</div>
+    <a href="/2019/01/12/node-ajax的一些坑/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">node+ajax的一些坑</div>
       <i class="icon-circle-right"></i>
     </a>
   
