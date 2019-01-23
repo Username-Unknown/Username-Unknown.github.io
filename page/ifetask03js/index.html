@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+  <meta content="telephone=no" name="format-detection"/>
+  <meta content="address=no" name="format-detection"/>
+  <title>任务管理</title>
+  <link rel="stylesheet" href="./index.css"/>
+  <style>
+
+  </style>
+</head>
+<body>
+        
+
+<div id=page>
+    <div id='left'>
+        <p>所有任务</p>
+        分类列表
+        <ul id='container' class='top'>
+
+        </ul>
+        <div class='buttonArea'> <button id="add">添加</button> <button id='del'>删除</button></div>
+       
+    </div>
+    <div id='middle'>
+        <div class='buttonArea'>
+            <button id='showConfirmed'>显示完成</button> <button id='showTodo'>显示未完成</button>
+            <button id='showAll'>显示所有</button>
+        </div>
+        <div id='tasklist'>
+        </div>
+        <div class='buttonArea'>
+            <button id="addTask">添加</button> <button id='delTask'>删除</button>
+        </div>
+
+    </div>
+    <div id='right'>
+        <button id='edit'>编辑</button> <button id='confirm' disabled>确认</button>
+        <button id='complete'>完成</button><button id='todo'>又没有完成</button>
+        <div id='taskcontent'>
+
+        </div>
+    </div>
+</div>
+    <script src='util.js'></script>
+
+</body>
+</html>
