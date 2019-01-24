@@ -16,7 +16,7 @@
 <meta property="og:description" content="来自于ife2015 ife 2015 spring task3  我的实现">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://github.com/baidu-ife/ife/raw/master/2015_spring/task/task0003/img/design.jpg">
-<meta property="og:updated_time" content="2019-01-23T01:12:26.894Z">
+<meta property="og:updated_time" content="2019-01-23T01:47:47.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="任务管理系统原生js">
 <meta name="twitter:description" content="来自于ife2015 ife 2015 spring task3  我的实现">
@@ -221,6 +221,7 @@ storage[&apos;project&apos;]=JSON.stringify(data);
 <p>做好了整体后，添加在项目名旁边显示任务数量的功能，方法是做一个span 里边放数量然后appenChild在 项目对应标签上.</p>
 <pre><code>&lt;h2&gt;项目名称&lt;span&gt;(11)&lt;/span&gt;&lt;/h2&gt;
 </code></pre><p>但是刷新网页查看效果时出了问题。原因是查找对象所用的名字是用innertext得到的。但是innertext也会得到子节点的文本。<br>之前得到的是’项目名称’,现在得到的是’项目名称(任务数量)’。<br>如果想要继续使用innertext属性，那么就要修改标签结构。把项目名称和任务数量放在两个同级的标签。<br>但是这样做会要改写很多程序。<br>想到可以通过文本节点来解决。<br>用.childNodes[0]来获取第一个节点，在这里应该是一个文本节点，获取文本节点的内容用.data</p>
+<p>既然使用数组存储</p>
 
       
 
