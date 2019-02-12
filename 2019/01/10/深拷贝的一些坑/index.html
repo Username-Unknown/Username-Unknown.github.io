@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="参考文章JavaScript深拷贝的一些坑 作者：YDJFE 题目要求使用递归来实现一个深度克隆，可以复制一个目标对象，返回一个完整拷贝被复制的对象类型会被限制为数字、字符串、布尔、日期、数组、Object对象。不会包含函数、正则对象等 不管要求，先从最基础的深拷贝开始， 逻辑，判断参数是否是一个对象。    不是，将参数直接返回。    是，遍历参数属性，对属性进行深拷贝 function cl">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-12T03:50:24.770Z">
+<meta property="og:updated_time" content="2019-01-29T01:54:17.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一道深拷贝题目">
 <meta name="twitter:description" content="参考文章JavaScript深拷贝的一些坑 作者：YDJFE 题目要求使用递归来实现一个深度克隆，可以复制一个目标对象，返回一个完整拷贝被复制的对象类型会被限制为数字、字符串、布尔、日期、数组、Object对象。不会包含函数、正则对象等 不管要求，先从最基础的深拷贝开始， 逻辑，判断参数是否是一个对象。    不是，将参数直接返回。    是，遍历参数属性，对属性进行深拷贝 function cl">
@@ -226,7 +226,7 @@ b//{}
     var rescon={};//result container
     var key;
     for( key in src){
-        rescon[key]=cloneObject(src[key])
+        rescon[key]=clone(src[key])
     }
     return rescon
 }

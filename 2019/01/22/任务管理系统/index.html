@@ -16,7 +16,7 @@
 <meta property="og:description" content="来自于ife2015 ife 2015 spring task3  我的实现">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://github.com/baidu-ife/ife/raw/master/2015_spring/task/task0003/img/design.jpg">
-<meta property="og:updated_time" content="2019-01-23T01:47:47.186Z">
+<meta property="og:updated_time" content="2019-02-12T02:15:15.844Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="任务管理系统原生js">
 <meta name="twitter:description" content="来自于ife2015 ife 2015 spring task3  我的实现">
@@ -204,7 +204,7 @@ storage[&apos;project&apos;]=JSON.stringify(data);
 }
 </code></pre><p>为了操作简便，再设置三个全局变量currentFirst,curretnSecond,currentThird,分别指向当前选中的对应层级的对象。<br>总的逻辑是，左中右三栏，对应三个层级的数据。<br>打开网页时，再左栏每个第一级对象绘制一个ul，每个ul下第一个标签为文本标签(h或p)存放一级对象的名称,<br>然后之后的li标签内容放该一级对象存储的二级对象的名字。<br>再左栏做事件代理，获取点击li标签的事件，根据该li标签所在的ul下第一个标签的内容，查找一级对象。<br>然后根据li标签自己的名字，在查找到的第一级对象中找到对应的二级对象。<br>找到二级对象后，在中栏绘制所包含的三级对象的列表。<br>同样做事件代理，选择三级对象对应的标签后，在右栏绘制详细。</p>
 <p>接下来说一说遇到的问题。<br>因为添加项目或任务做成了独立的按键，点击了按钮后就失去了上次点选的标签的信息。<br>所以设置了三个currentFirst,curretnSecond,currentThird变量，每次查找到的对象都存入对应变量。<br>增加内容直接在currentxxx中操作。</p>
-<p>####日期聚类和排序。<br>在绘制中栏时，先设置一个空的数组store。该数组的元素应该为一个对象。该对象有两个属性，一个属性存储时间，<br>一个属性为数组，存储三级对象。<br>在遍历二级对象存储的三级对象时，检查每个三级对象的’date’属性，查找store中是否存在同date的对象，<br>如果有则放入该对象的数组。否则新建对象，设置时间为该三级对象的’date’，并将三级对象放入数组。</p>
+<h4 id="日期聚类和排序。"><a href="#日期聚类和排序。" class="headerlink" title="日期聚类和排序。"></a>日期聚类和排序。</h4><p>在绘制中栏时，先设置一个空的数组store。该数组的元素应该为一个对象。该对象有两个属性，一个属性存储时间，<br>一个属性为数组，存储三级对象。<br>在遍历二级对象存储的三级对象时，检查每个三级对象的’date’属性，查找store中是否存在同date的对象，<br>如果有则放入该对象的数组。否则新建对象，设置时间为该三级对象的’date’，并将三级对象放入数组。</p>
 <p>遍历完后，排序。这里的排序是‘根据对象的某个属性进行排序’，需要写一个排序的函数sortRule<br>sotre.sort(sortRule)，</p>
 <pre><code>function sortrule(a,b){
     if(a[&apos;name&apos;]&gt;=b[&apos;name&apos;]){
@@ -215,9 +215,9 @@ storage[&apos;project&apos;]=JSON.stringify(data);
 // 若a 应该出现在 b 之前，则返回一个小于 0 的值。 
 //若a 应该出现在 b 之后，则返回一个大于 0 的值 
 </code></pre><p>排序完成后，按顺序绘制store内容。</p>
-<p>###显示已完成、未完成、所有<br>绘制中间栏内容是用一个函数buildTaskList完成的。<br>希望能够向它传入一个参数来控制显示。但是不想用 switch 参数的方式写三种判断。<br>而是用 if(标识==参数)来判断是否需要显示。<br>一开始存储任务完成状态的标识是用的布尔。很很自然得想到了参数传递布尔值。<br>但是已完成、未完成、所有是三种，而布尔值只有true和false。<br>一时间没想到办法。但后来想到显示所有就是无需判断。<br>再利用 0==false,和非零==true,参数用数字。<br>那么<br>if(参数&gt;=0){<br>    if(标识!==参数){<br>        continue;<br>    }<br>}<br>…..<br>这样显示全部时，传入负数数就能跳过判断。</p>
-<p>###css方面<br>设计稿上按钮放在最下面，同时要求上又说当高度小于一定值时，主题内容出现滚动条。<br>如果用定位将按钮放在最下面那么，当出现滚动条，按钮会进入到内容区域。<br>那么应该让主题内容自动占据剩余空间，并设置min-height和overflow:auto;<br>自动占据剩余空间，也就是flex-grow;同时应该为其他元素设置flex-grow:0 flex-shrink:0 不让它们变大，也不让变小;</p>
-<p>##坑<br>用prompt获取新建项目的名称，但是在promt的弹出窗中选择取消不会使得调用promt()的函数立刻返回。<br>而是promt返回null,同时promt弹出窗中不进行输入点击确定会得到’’;</p>
+<h3 id="显示已完成、未完成、所有"><a href="#显示已完成、未完成、所有" class="headerlink" title="显示已完成、未完成、所有"></a>显示已完成、未完成、所有</h3><p>绘制中间栏内容是用一个函数buildTaskList完成的。<br>希望能够向它传入一个参数来控制显示。但是不想用 switch 参数的方式写三种判断。<br>而是用 if(标识==参数)来判断是否需要显示。<br>一开始存储任务完成状态的标识是用的布尔。很很自然得想到了参数传递布尔值。<br>但是已完成、未完成、所有是三种，而布尔值只有true和false。<br>一时间没想到办法。但后来想到显示所有就是无需判断。<br>再利用 0==false,和非零==true,参数用数字。<br>那么<br>if(参数&gt;=0){<br>    if(标识!==参数){<br>        continue;<br>    }<br>}<br>…..<br>这样显示全部时，传入负数数就能跳过判断。</p>
+<h3 id="css方面"><a href="#css方面" class="headerlink" title="css方面"></a>css方面</h3><p>设计稿上按钮放在最下面，同时要求上又说当高度小于一定值时，主题内容出现滚动条。<br>如果用定位将按钮放在最下面那么，当出现滚动条，按钮会进入到内容区域。<br>那么应该让主题内容自动占据剩余空间，并设置min-height和overflow:auto;<br>自动占据剩余空间，也就是flex-grow;同时应该为其他元素设置flex-grow:0 flex-shrink:0 不让它们变大，也不让变小;</p>
+<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><p>用prompt获取新建项目的名称，但是在promt的弹出窗中选择取消不会使得调用promt()的函数立刻返回。<br>而是promt返回null,同时promt弹出窗中不进行输入点击确定会得到’’;</p>
 <p>做好了整体后，添加在项目名旁边显示任务数量的功能，方法是做一个span 里边放数量然后appenChild在 项目对应标签上.</p>
 <pre><code>&lt;h2&gt;项目名称&lt;span&gt;(11)&lt;/span&gt;&lt;/h2&gt;
 </code></pre><p>但是刷新网页查看效果时出了问题。原因是查找对象所用的名字是用innertext得到的。但是innertext也会得到子节点的文本。<br>之前得到的是’项目名称’,现在得到的是’项目名称(任务数量)’。<br>如果想要继续使用innertext属性，那么就要修改标签结构。把项目名称和任务数量放在两个同级的标签。<br>但是这样做会要改写很多程序。<br>想到可以通过文本节点来解决。<br>用.childNodes[0]来获取第一个节点，在这里应该是一个文本节点，获取文本节点的内容用.data</p>
@@ -314,6 +314,15 @@ storage[&apos;project&apos;]=JSON.stringify(data);
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/01/29/任务管理系统vue/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          任务管理系统vue
+        
+      </div>
+    </a>
   
   
     <a href="/2019/01/12/node-ajax的一些坑/" id="article-nav-older" class="article-nav-link-wrap">
