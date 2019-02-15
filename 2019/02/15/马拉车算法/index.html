@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="参考Manacher’s Algorithm 马拉车算法 By Grandyang 马拉车算法用来查找一个字符串中的最长回文子串的方法要把所有回文串长度得到，进行比较，才能找最大。 如果某个回文串是另一个回文串的子串，那么它的长度不可能是最大。例如abcba  以c为中心 有bcb和abcba，bcb是abcba的子串，其长度自然不可能大于abcba 那么不用找所有回文串，而是得到以每个字符为中心">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-15T08:27:14.189Z">
+<meta property="og:updated_time" content="2019-02-15T08:28:13.147Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="马拉车算法">
 <meta name="twitter:description" content="参考Manacher’s Algorithm 马拉车算法 By Grandyang 马拉车算法用来查找一个字符串中的最长回文子串的方法要把所有回文串长度得到，进行比较，才能找最大。 如果某个回文串是另一个回文串的子串，那么它的长度不可能是最大。例如abcba  以c为中心 有bcb和abcba，bcb是abcba的子串，其长度自然不可能大于abcba 那么不用找所有回文串，而是得到以每个字符为中心">
@@ -189,10 +189,27 @@
 <p>回文串的特点是对称。<br>假设我们刚才遍历到的字符位置下标为i，它为中心的回文串半径记录到p[i]，<br>它左边一位的字符i-1为中心的回文串半径为p[i-1]。它右边的字符为i<br>如果p[i]能完全包括住i-1、p[i-1],那么i+1、p[i+1]应该是和i-1、p[i-1]相同的。<br>当无法包括时，i+1的部分信息我们是不知道的。那么我们应该重新获取信息。</p>
 <p>确定了i+1和p[i+1],那是不是确定i+2和p[i+2]时，i+1应该相当于刚才的i?<br>有个很简单的例子，加入p[i]很长，p[i+1]很短。确定p[i+2]时我们该参考谁。</p>
 <p>由于我们是向右遍历的，谁能往右包含更多的字符，谁就更能帮助我们。</p>
-<p>新增两个辅助变量mx和id，<br>其中id为现在已知的能延伸到最右端的回文子串的中心点位置，mx是该串能延伸到的最右端的位置。<br>vector<int> p(t.size(), 0);//用p存储半径<br>int mx = 0, id = 0,<br>for (int i = 1; i &lt; t.size(); ++i) {//t为添加#后目标字符串<br>    p[i] = mx &gt; i ? min(p[2 * id - i], mx - i) : 1;<br>    while (t[i + p[i]] == t[i - p[i]]){<br>        ++p[i];<br>    }<br>    if (mx &lt; i + p[i]) {<br>        mx = i + p[i];<br>        id = i;<br>    }<br>}<br>确定p[i]的过程如下</int></p>
+<p>新增两个辅助变量mx和id，<br>其中id为现在已知的能延伸到最右端的回文子串的中心点位置，mx是该串能延伸到的最右端的位置。</p>
+<pre><code>vector&lt;int&gt; p(t.size(), 0);//用p存储半径
+int mx = 0, id = 0,
+for (int i = 1; i &lt; t.size(); ++i) {//t为添加#后目标字符串
+    p[i] = mx &gt; i ? min(p[2 * id - i], mx - i) : 1;
+    while (t[i + p[i]] == t[i - p[i]]){
+        ++p[i];
+    } 
+    if (mx &lt; i + p[i]) {
+        mx = i + p[i];
+        id = i;
+    }
+}
+</code></pre><p>确定p[i]的过程如下</p>
 <p>i是否被包含？<br>    不是，那么暂定以它为中心的回文串半径为1(若p[i] = 1，则该回文子串就是t[i]本身)</p>
 <p>是    它关于id的对称点j下标为(2 * id - i) //{id-(i-id)}<br>    j为中心的最长回文串是否被完全包含。<br>        是，    那么p[i]=p[j]<br>        不是,     但是被包含的部分是相同的，也就是说以i为中心的回文子串，其向右至少会扩张到mx的位置<br>                即p[i]=mx - i</p>
-<p>其中p[i]=1和pi=mx - i情况，<br>要用<br>while (t[i + p[i]] == t[i - p[i]]){<br>    ++p[i];<br>}<br>寻找到以其为中心的最大回文子串半径。<br>p[i]=p[j]也要执行该语句，但是p[j]就是最大半径，所以会直接退出。<br>(注意该循环中可能造成数组越界。<br>我们再在字符串最前方添加一个即不是#也不属于源字符串的符号$,这能使我们不用进行越界判断，<br>那么实际添加#的过程应该是 </p>
+<p>其中p[i]=1和pi=mx - i情况，<br>要用</p>
+<pre><code>while (t[i + p[i]] == t[i - p[i]]){
+    ++p[i];
+}
+</code></pre><p>寻找到以其为中心的最大回文子串半径。<br>p[i]=p[j]也要执行该语句，但是p[j]就是最大半径，所以会直接退出。<br>(注意该循环中可能造成数组越界。<br>我们再在字符串最前方添加一个即不是#也不属于源字符串的符号$,这能使我们不用进行越界判断，<br>那么实际添加#的过程应该是 </p>
 <pre><code>string t = &quot;$#&quot;;
 for (int i = 0; i &lt; s.size(); ++i) {
     t += s[i];
