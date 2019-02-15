@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>马拉车算法 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="参考Manacher’s Algorithm 马拉车算法 By Grandyang 马拉车算法用来查找一个字符串中的最长回文子串的方法要把所有回文串长度得到，进行比较，才能找最大。 如果某个回文串是另一个回文串的子串，那么它的长度不可能是最大。例如abcba  以c为中心 有bcb和abcba，bcb是abcba的子串，其长度自然不可能大于abcba 那么不用找所有回文串，而是得到以每个字符为中心">
+<meta property="og:type" content="article">
+<meta property="og:title" content="马拉车算法">
+<meta property="og:url" content="http://yoursite.com/2019/02/15/马拉车算法/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="参考Manacher’s Algorithm 马拉车算法 By Grandyang 马拉车算法用来查找一个字符串中的最长回文子串的方法要把所有回文串长度得到，进行比较，才能找最大。 如果某个回文串是另一个回文串的子串，那么它的长度不可能是最大。例如abcba  以c为中心 有bcb和abcba，bcb是abcba的子串，其长度自然不可能大于abcba 那么不用找所有回文串，而是得到以每个字符为中心">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-15T08:27:14.189Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="马拉车算法">
+<meta name="twitter:description" content="参考Manacher’s Algorithm 马拉车算法 By Grandyang 马拉车算法用来查找一个字符串中的最长回文子串的方法要把所有回文串长度得到，进行比较，才能找最大。 如果某个回文串是另一个回文串的子串，那么它的长度不可能是最大。例如abcba  以c为中心 有bcb和abcba，bcb是abcba的子串，其长度自然不可能大于abcba 那么不用找所有回文串，而是得到以每个字符为中心">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,305 +154,188 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-马拉车算法" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      马拉车算法
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/15/马拉车算法/" class="archive-article-date">
+
+        
+        <a href="/2019/02/15/马拉车算法/" class="archive-article-date">
   	<time datetime="2019-02-15T08:08:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/15/马拉车算法/">马拉车算法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/29/任务管理系统vue/" class="archive-article-date">
-  	<time datetime="2019-01-29T10:03:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/29/任务管理系统vue/">任务管理系统vue</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/22/任务管理系统/" class="archive-article-date">
-  	<time datetime="2019-01-22T02:18:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/22/任务管理系统/">任务管理系统原生js</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/12/node-ajax的一些坑/" class="archive-article-date">
-  	<time datetime="2019-01-12T02:33:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/12/node-ajax的一些坑/">node+ajax的一些坑</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/10/深拷贝的一些坑/" class="archive-article-date">
-  	<time datetime="2019-01-10T01:52:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/10/深拷贝的一些坑/">一道深拷贝题目</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/09/function-foo-and-var-foo-function/" class="archive-article-date">
-  	<time datetime="2019-01-09T09:34:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/09/function-foo-and-var-foo-function/">function foo() {} and var foo = function() {}</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/08/masonry使用/" class="archive-article-date">
-  	<time datetime="2019-01-08T03:18:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/08/masonry使用/">masonry使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/06/测试到本地资源的连接/" class="archive-article-date">
-  	<time datetime="2019-01-06T12:43:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/06/测试到本地资源的连接/">hexo到本地资源的连接</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/06/箭头函数中的this指向/" class="archive-article-date">
-  	<time datetime="2019-01-06T06:49:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/06/箭头函数中的this指向/">箭头函数中的this指向</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
+        <p>参考<a href="https://www.cnblogs.com/grandyang/p/4475985.html" target="_blank" rel="noopener">Manacher’s Algorithm 马拉车算法 By Grandyang</a></p>
+<p>马拉车算法<br>用来查找一个字符串中的最长回文子串的方法<br>要把所有回文串长度得到，进行比较，才能找最大。</p>
+<p>如果某个回文串是另一个回文串的子串，那么它的长度不可能是最大。<br>例如abcba  以c为中心 有bcb和abcba，bcb是abcba的子串，其长度自然不可能大于abcba</p>
+<p>那么不用找所有回文串，<br>而是得到以每个字符为中心的回文串的最大长度，最后比较长度得到最大值。</p>
+<p>如何确定某个字符为中心的回文串的最大长度。<br>很简单的逻辑，向左和向右遍历字符，直到左右不同。</p>
+<p>但是这样有两个问题<br><a id="more"></a></p>
+<h3 id="一"><a href="#一" class="headerlink" title="一"></a>一</h3><p>“以每个字符为中心的串”，这个串长度为基数 如aba<br>如果串长度为偶数如 bbbb，那么最大长度为4，但是没有以一个b为中心的回文子串长能够到达4.</p>
+<p>为了解决奇偶不同，在每一个字符的左右都加上一个特殊字符，比如加上’#’，</p>
+<p>bob    –&gt;    #b#o#b#<br>noon    –&gt;    #n#o#o#n# </p>
+<p>这样在原来串里的偶数长度回文串，我们能在处理过的串里找到对应的奇数长度串。<br>获得真实结果时减去多数的#</p>
+<p>bob长度为3，#b#o#b#的半径为4（计算半径时要算入中心） 3=4-1<br>noon长度为4 #n#o#o#n# 半径为5（中心为#)  4=5-1<br>(推导，假设原始回文串长度为x<br>    x为奇数，回文串中心为某个字符，左右各有(x-1)/2个字符<br>    添加了x+1个#，左右分配相同数量，半径为{(x+1)/2+(x-1)/2+1}=x+1;<br>    x为偶数，回文串中心位于两个字符中间，添加#后，中心为#。<br>    添加了x+1个#，其中的+1用作中心，剩余的x个#左右分配相同数量，<br>    半径为{1+x/2+x/2}=x+1<br>)<br>结论<br>回文串长度等于添加#后对应串半径-1</p>
+<h3 id="二"><a href="#二" class="headerlink" title="二"></a>二</h3><p>假如我们是从左向右遍历，<br>在确定某个字符为中心的字符串的回文性时，可能需要遍历多个字符。<br>但是遍历下一个字符，也就是获取以它右边的字符为中心的回文字符串长度时，可能又要重复遍历字符。<br>能不能用上已经获取到的信息。</p>
+<p>回文串的特点是对称。<br>假设我们刚才遍历到的字符位置下标为i，它为中心的回文串半径记录到p[i]，<br>它左边一位的字符i-1为中心的回文串半径为p[i-1]。它右边的字符为i<br>如果p[i]能完全包括住i-1、p[i-1],那么i+1、p[i+1]应该是和i-1、p[i-1]相同的。<br>当无法包括时，i+1的部分信息我们是不知道的。那么我们应该重新获取信息。</p>
+<p>确定了i+1和p[i+1],那是不是确定i+2和p[i+2]时，i+1应该相当于刚才的i?<br>有个很简单的例子，加入p[i]很长，p[i+1]很短。确定p[i+2]时我们该参考谁。</p>
+<p>由于我们是向右遍历的，谁能往右包含更多的字符，谁就更能帮助我们。</p>
+<p>新增两个辅助变量mx和id，<br>其中id为现在已知的能延伸到最右端的回文子串的中心点位置，mx是该串能延伸到的最右端的位置。<br>vector<int> p(t.size(), 0);//用p存储半径<br>int mx = 0, id = 0,<br>for (int i = 1; i &lt; t.size(); ++i) {//t为添加#后目标字符串<br>    p[i] = mx &gt; i ? min(p[2 * id - i], mx - i) : 1;<br>    while (t[i + p[i]] == t[i - p[i]]){<br>        ++p[i];<br>    }<br>    if (mx &lt; i + p[i]) {<br>        mx = i + p[i];<br>        id = i;<br>    }<br>}<br>确定p[i]的过程如下</int></p>
+<p>i是否被包含？<br>    不是，那么暂定以它为中心的回文串半径为1(若p[i] = 1，则该回文子串就是t[i]本身)</p>
+<p>是    它关于id的对称点j下标为(2 * id - i) //{id-(i-id)}<br>    j为中心的最长回文串是否被完全包含。<br>        是，    那么p[i]=p[j]<br>        不是,     但是被包含的部分是相同的，也就是说以i为中心的回文子串，其向右至少会扩张到mx的位置<br>                即p[i]=mx - i</p>
+<p>其中p[i]=1和pi=mx - i情况，<br>要用<br>while (t[i + p[i]] == t[i - p[i]]){<br>    ++p[i];<br>}<br>寻找到以其为中心的最大回文子串半径。<br>p[i]=p[j]也要执行该语句，但是p[j]就是最大半径，所以会直接退出。<br>(注意该循环中可能造成数组越界。<br>我们再在字符串最前方添加一个即不是#也不属于源字符串的符号$,这能使我们不用进行越界判断，<br>那么实际添加#的过程应该是 </p>
+<pre><code>string t = &quot;$#&quot;;
+for (int i = 0; i &lt; s.size(); ++i) {
+    t += s[i];
+    t += &quot;#&quot;;
+}
+</code></pre><p>之后检查是否需要更新id和mx。</p>
+<p>遍历完成后我们就能得到以每个字符为中心的回文子串最大长度。</p>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>假如我们还想得到某个回文子串的开始位置（加上长度，就能从目标串里提取处该串）<br>该怎么做</p>
+<p>举例</p>
+<p>1   2   3   a   b   a<br>0   1   2   3   4   5</p>
+<p>$  #   1   #   2   #   3   #   a   #   b   #   a   #<br>0  1   2   3   4   5   6   7   8   9   10  11  12  13</p>
+<p>1  2  3   a   a<br>0  1  2   3   4</p>
+<p>$  #   1   #   2   #  3   #   a   #   a   #<br>0  1   2   3   4   5  6   7   8   9   10  11<br>（为方便讨论称添加过#的字符串为t，原始的为o）<br>    目标子串长度为y，在t里中心字符下标为z<br>    y为奇数，半径p[z]为 偶数（上面论证过半径为y+1，源长度y为奇数则半径为偶数）<br>    假如我们能通过p[z]和z找到该串最开始的字符在t中的下标i;<br>    那么就能得到最开始字符在o中的下标h；<br>    由于半径计算了中心，那么最远点距中心距离为p[z]-1;<br>    最远点下标为{z-(p[z]-1)} 然后该坐标上字符应该为#，实际开始字符坐标还要加1<br>    i={z-(p[z]-1)+1}=z+2-p[z]<br>    找h和i的关系，h前面添加了h+1个#和一个$ i=h+(h+1)+1=2h+2<br>    z+2-p[z]=2h+2;<br>    h=(z-p[z])/2;</p>
+<p>上面的讨论没有因为y是否是奇数偶数而改变，所以<br>h=(z-p[z])/2是通用的</p>
+<p>参考文章中说$是为了计算回文子串的开始位置能统一情况而添加，实际不是<br>因为按照上面的推论，假如没有添加$,<br>那么i=2h+1;z+2-p[z]=2h+1;h=(z-p[z]+1)/2</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/29/javascript闭包/" class="archive-article-date">
-  	<time datetime="2018-12-29T00:44:45.067Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/29/javascript闭包/">javascript 闭包</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/02/15/马拉车算法/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/01/29/任务管理系统vue/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">任务管理系统vue</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -472,8 +359,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
