@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>transition和animation | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="transition 过渡概念:对一个属性设置过渡，当属性被改变(hover或js修改css)，会以动画形式过渡到新的属性用法:  transition: property duration timing-function delay; property        对哪个属性应用transitionduration        动画时间timing-function    速度delay">
+<meta property="og:type" content="article">
+<meta property="og:title" content="transition和animation">
+<meta property="og:url" content="http://yoursite.com/2019/02/17/transition和animation/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="transition 过渡概念:对一个属性设置过渡，当属性被改变(hover或js修改css)，会以动画形式过渡到新的属性用法:  transition: property duration timing-function delay; property        对哪个属性应用transitionduration        动画时间timing-function    速度delay">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-17T02:36:12.011Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="transition和animation">
+<meta name="twitter:description" content="transition 过渡概念:对一个属性设置过渡，当属性被改变(hover或js修改css)，会以动画形式过渡到新的属性用法:  transition: property duration timing-function delay; property        对哪个属性应用transitionduration        动画时间timing-function    速度delay">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,295 +154,187 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-transition和animation" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      transition和animation
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/17/transition和animation/" class="archive-article-date">
+
+        
+        <a href="/2019/02/17/transition和animation/" class="archive-article-date">
   	<time datetime="2019-02-17T01:58:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-17</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/17/transition和animation/">transition和animation</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="transition-过渡"><a href="#transition-过渡" class="headerlink" title="transition 过渡"></a>transition 过渡</h3><p>概念:对一个属性设置过渡，当属性被改变(hover或js修改css)，会以动画形式过渡到新的属性<br>用法:  transition: property duration timing-function delay;</p>
+<p>property        对哪个属性应用transition<br>duration        动画时间<br>timing-function    速度<br>delay            延迟</p>
+<p>注意<br>duration 可以接受秒或毫秒，所以属性值要注意添加s或ms<br>timing-function 常见的有 linear(线性) ease（开始和结束时慢，中间快) ease-in(先慢后快)<br>通用设置方法为 cubic-bezier(n,n,n,n) 以四个值来规定一条贝塞尔曲线</p>
+<p>其他写法<br>如果想在同一句内为多个属性启用过渡<br>transition:width,height 1000ms,1000ms linear;<br>目标css属性用逗号隔开， 每个属性要对应时间，不会因为省略而将一个时间应用到所有属性<br>timing-function只能是一个</p>
+<p>transition: 写法可以看作transition-property transition-duration ..等四个属性的连写<br>所以可以这么写</p>
+<pre><code>selector{
+    ...
+    transition-property: width,height;
+    transition-duration: 1s,2s;
+    transition-timing-function:linear,ease;
+    ...
+}
+</code></pre><p>这样一一对应，也可以省略来多对一</p>
+<pre><code>transition-property: width,height;
+transition-duration: 1s
+</code></pre><h3 id="animation-动画"><a href="#animation-动画" class="headerlink" title="animation 动画"></a>animation 动画</h3><p>概念:使元素按照规定的关键帧进行动画<br>用法:  animation: name duration timing-function delay ..<br>name              关键帧(@keyframes)名称<br>duration         持续时间<br>timing-function 同过渡  默认为ease<br>delay            延迟 默认为0<br>iteration-count （循环）播放次数    默认为1，需要无限循环 设置为 infinite<br>direction        规定动画是否在下一周期逆向地播放。默认是 “normal”。<br>play-state        规定动画是否正在运行或暂停。默认是 “running”。<br>fill-mode        规定对象动画时间之外的状态。</p>
+<p>动画的关键是 关键帧(@keyframes)<br>在css中定义关键帧</p>
+<pre><code>@keyframes myfirst  //myfirst是这个关键帧的名字
+{
+    from {background: red;}
+    to {background: yellow;}
+}
+</code></pre><p>用百分比来规定 动画过程中的单个关键帧<br>“from” 和 “to”，等同于 0% 和 100%。</p>
+<pre><code>@keyframes myfirst
+{
+    0%   {background: red;}
+    25%  {background: yellow;}
+    50%  {background: blue;}
+    100% {background: green;}
+}
+</code></pre><p>类似transition<br>animation也是多个属性的连写，<br>可以这么写</p>
+<pre><code>animation-name:xxxx  xxxx xxxx;
+animation-duration:xxxx xxxx xxx;
+</code></pre>
+      
 
-        <div class="article-info info-on-right">
-          
-          
-
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/02/17/transition和animation/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/15/马拉车算法/" class="archive-article-date">
-  	<time datetime="2019-02-15T08:08:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-15</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/15/马拉车算法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">马拉车算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/15/马拉车算法/">马拉车算法</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/29/任务管理系统vue/" class="archive-article-date">
-  	<time datetime="2019-01-29T10:03:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/29/任务管理系统vue/">任务管理系统vue</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/22/任务管理系统/" class="archive-article-date">
-  	<time datetime="2019-01-22T02:18:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/22/任务管理系统/">任务管理系统原生js</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/12/node-ajax的一些坑/" class="archive-article-date">
-  	<time datetime="2019-01-12T02:33:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/12/node-ajax的一些坑/">node+ajax的一些坑</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/10/深拷贝的一些坑/" class="archive-article-date">
-  	<time datetime="2019-01-10T01:52:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/10/深拷贝的一些坑/">一道深拷贝题目</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/09/function-foo-and-var-foo-function/" class="archive-article-date">
-  	<time datetime="2019-01-09T09:34:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/09/function-foo-and-var-foo-function/">function foo() {} and var foo = function() {}</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/08/masonry使用/" class="archive-article-date">
-  	<time datetime="2019-01-08T03:18:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/08/masonry使用/">masonry使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/06/测试到本地资源的连接/" class="archive-article-date">
-  	<time datetime="2019-01-06T12:43:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/06/测试到本地资源的连接/">hexo到本地资源的连接</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/06/箭头函数中的this指向/" class="archive-article-date">
-  	<time datetime="2019-01-06T06:49:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/06/箭头函数中的this指向/">箭头函数中的this指向</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -462,8 +358,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

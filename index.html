@@ -152,6 +152,101 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-transition和animation" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/17/transition和animation/">transition和animation</a>
+    </h1>
+  
+
+        
+        <a href="/2019/02/17/transition和animation/" class="archive-article-date">
+  	<time datetime="2019-02-17T01:58:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="transition-过渡"><a href="#transition-过渡" class="headerlink" title="transition 过渡"></a>transition 过渡</h3><p>概念:对一个属性设置过渡，当属性被改变(hover或js修改css)，会以动画形式过渡到新的属性<br>用法:  transition: property duration timing-function delay;</p>
+<p>property        对哪个属性应用transition<br>duration        动画时间<br>timing-function    速度<br>delay            延迟</p>
+<p>注意<br>duration 可以接受秒或毫秒，所以属性值要注意添加s或ms<br>timing-function 常见的有 linear(线性) ease（开始和结束时慢，中间快) ease-in(先慢后快)<br>通用设置方法为 cubic-bezier(n,n,n,n) 以四个值来规定一条贝塞尔曲线</p>
+<p>其他写法<br>如果想在同一句内为多个属性启用过渡<br>transition:width,height 1000ms,1000ms linear;<br>目标css属性用逗号隔开， 每个属性要对应时间，不会因为省略而将一个时间应用到所有属性<br>timing-function只能是一个</p>
+<p>transition: 写法可以看作transition-property transition-duration ..等四个属性的连写<br>所以可以这么写</p>
+<pre><code>selector{
+    ...
+    transition-property: width,height;
+    transition-duration: 1s,2s;
+    transition-timing-function:linear,ease;
+    ...
+}
+</code></pre><p>这样一一对应，也可以省略来多对一</p>
+<pre><code>transition-property: width,height;
+transition-duration: 1s
+</code></pre><h3 id="animation-动画"><a href="#animation-动画" class="headerlink" title="animation 动画"></a>animation 动画</h3><p>概念:使元素按照规定的关键帧进行动画<br>用法:  animation: name duration timing-function delay ..<br>name              关键帧(@keyframes)名称<br>duration         持续时间<br>timing-function 同过渡  默认为ease<br>delay            延迟 默认为0<br>iteration-count （循环）播放次数    默认为1，需要无限循环 设置为 infinite<br>direction        规定动画是否在下一周期逆向地播放。默认是 “normal”。<br>play-state        规定动画是否正在运行或暂停。默认是 “running”。<br>fill-mode        规定对象动画时间之外的状态。</p>
+<p>动画的关键是 关键帧(@keyframes)<br>在css中定义关键帧</p>
+<pre><code>@keyframes myfirst  //myfirst是这个关键帧的名字
+{
+    from {background: red;}
+    to {background: yellow;}
+}
+</code></pre><p>用百分比来规定 动画过程中的单个关键帧<br>“from” 和 “to”，等同于 0% 和 100%。</p>
+<pre><code>@keyframes myfirst
+{
+    0%   {background: red;}
+    25%  {background: yellow;}
+    50%  {background: blue;}
+    100% {background: green;}
+}
+</code></pre><p>类似transition<br>animation也是多个属性的连写，<br>可以这么写</p>
+<pre><code>animation-name:xxxx  xxxx xxxx;
+animation-duration:xxxx xxxx xxx;
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/02/17/transition和animation/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-马拉车算法" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -739,80 +834,6 @@ foo//17
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/01/06/箭头函数中的this指向/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-javascript闭包" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/29/javascript闭包/">javascript 闭包</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/29/javascript闭包/" class="archive-article-date">
-  	<time datetime="2018-12-29T00:44:45.067Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在javascript中获得闭包很简单<br>在一个函数内部再定义一个函数</p>
-<pre><code>function foo(){
-    function bar(){
-    }
-}
-</code></pre><p>但是闭包具体是上面哪一个部分 ，这反而是很回答的问题，因为定义不规范，人们的也认识不同;<br>MDN在有关闭包的页面开头就说“闭包是函数和声明该函数的词法环境的组合”，意思是闭包是一个概念，<br>类似的，javascript权威指南 第6版说，闭包就是函数和该函数作用域的组合。<br>但是在MDN的示例代码中又把一个函数声明注释为“闭包”</p>
-<p>有的人又说在内部函数内引用到了外部函数的变量才算闭包。<br>js高级程序设计第三版上说，闭包是指有权访问另一个函数作用域中的变量的函数。</p>
-<p>可以说是众说纷纭。<br><a href="https://www.cnblogs.com/xiaohuochai/p/5728577.html" title="深入理解闭包系列第一篇——到底什么才是闭包" target="_blank" rel="noopener">深入理解闭包系列第一篇——到底什么才是闭包 博客园:小火柴的蓝色理想</a></p>
-<p>至少本文的代码中存在闭包，但哪几个字母组成了闭包，不再讨论。</p>
-<p>我们要讲的是被内部函数引用到的变量发生了什么<br>
-        
-          <a class="article-more-a" href="/2018/12/29/javascript闭包/#more">more >></a>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/29/javascript闭包/">展开全文 >></a>
         </p>
       
 
