@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="transition 过渡概念:对一个属性设置过渡，当属性被改变(hover或js修改css)，会以动画形式过渡到新的属性用法:  transition: property duration timing-function delay; property        对哪个属性应用transitionduration        动画时间timing-function    速度delay">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-17T02:36:12.011Z">
+<meta property="og:updated_time" content="2019-02-25T11:04:56.132Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="transition和animation">
 <meta name="twitter:description" content="transition 过渡概念:对一个属性设置过渡，当属性被改变(hover或js修改css)，会以动画形式过渡到新的属性用法:  transition: property duration timing-function delay; property        对哪个属性应用transitionduration        动画时间timing-function    速度delay">
@@ -175,8 +175,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="transition-过渡"><a href="#transition-过渡" class="headerlink" title="transition 过渡"></a>transition 过渡</h3><p>概念:对一个属性设置过渡，当属性被改变(hover或js修改css)，会以动画形式过渡到新的属性<br>用法:  transition: property duration timing-function delay;</p>
-<p>property        对哪个属性应用transition<br>duration        动画时间<br>timing-function    速度<br>delay            延迟</p>
-<p>注意<br>duration 可以接受秒或毫秒，所以属性值要注意添加s或ms<br>timing-function 常见的有 linear(线性) ease（开始和结束时慢，中间快) ease-in(先慢后快)<br>通用设置方法为 cubic-bezier(n,n,n,n) 以四个值来规定一条贝塞尔曲线</p>
+<p>property        对哪个属性应用transition<br>duration        动画时间<br>timing-function    速度<br>delay            延迟<br><a id="more"></a><br>注意<br>duration 可以接受秒或毫秒，所以属性值要注意添加s或ms<br>timing-function 常见的有 linear(线性) ease（开始和结束时慢，中间快) ease-in(先慢后快)<br>通用设置方法为 cubic-bezier(n,n,n,n) 以四个值来规定一条贝塞尔曲线</p>
 <p>其他写法<br>如果想在同一句内为多个属性启用过渡<br>transition:width,height 1000ms,1000ms linear;<br>目标css属性用逗号隔开， 每个属性要对应时间，不会因为省略而将一个时间应用到所有属性<br>timing-function只能是一个</p>
 <p>transition: 写法可以看作transition-property transition-duration ..等四个属性的连写<br>所以可以这么写</p>
 <pre><code>selector{

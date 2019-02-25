@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="首先    说到 Promise 时指的是用new Promise（）创建的一个实例对象我们要用这个对象的方法实现一些功能Promise构造函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject。它们是两个函数，由 JavaScript 引擎提供，不用自己部署。 const promise = new Promise(function(resolve, reject) {">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-20T03:09:37.425Z">
+<meta property="og:updated_time" content="2019-02-25T11:04:42.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="promise使用和自己实现">
 <meta name="twitter:description" content="首先    说到 Promise 时指的是用new Promise（）创建的一个实例对象我们要用这个对象的方法实现一些功能Promise构造函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject。它们是两个函数，由 JavaScript 引擎提供，不用自己部署。 const promise = new Promise(function(resolve, reject) {">
@@ -184,7 +184,8 @@
     reject(error);
   }
 });
-</code></pre><p>也可以直接用<br>    Promise.resolve(value)<br>    Promise.reject(reason)来直接创建一个promise</p>
+</code></pre><a id="more"></a>
+<p>也可以直接用<br>    Promise.resolve(value)<br>    Promise.reject(reason)来直接创建一个promise</p>
 <p>创建了一个Promise实例后，用then方法分别指定处理用的函数<br>    promise.then(function1,function2)<br>    当promise传给回调的resolve 被调用时，function1被调用参数为resolve的参数<br>    function2由reject()调用，传入error，function2是可选的，function1是必需的。</p>
 <p>then()方法返回一个新的promise,可以用一个类来接收并继续写then()，也可以链式写法写then.<br>关键在于then()返回的promise的行为<br>mdn中定义如下:<br>如果then中的回调函（无论function1还是function2）数返回一个值，<br>    那么then返回的Promise将会成为接受状态，并且将返回的值作为接受状态的回调函数的参数值。<br>如果then中的回调函数抛出一个错误，<br>    那么then返回的Promise将会成为拒绝状态，并且将抛出的错误作为拒绝状态的回调函数的参数值。<br>如果then中的回调函数返回一个已经是接受状态的Promise，<br>    那么then返回的Promise也会成为接受状态，<br>    并且将那个Promise的接受状态的回调函数的参数值作为该被返回的Promise的接受状态回调函数的参数值。<br>如果then中的回调函数返回一个已经是拒绝状态的Promise，<br>    那么then返回的Promise也会成为拒绝状态，<br>    并且将那个Promise的拒绝状态的回调函数的参数值作为该被返回的Promise的拒绝状态回调函数的参数值。<br>如果then中的回调函数返回一个未定状态（pending）的Promise，<br>    (这里是 then的回调返回的promise和 then返回的promise)<br>    那么then返回Promise的状态也是未定的，并且它的终态与那个Promise的终态相同；<br>    同时，它变为终态时then()的回调函数的参数与那个Promise变为终态时的then的回调函数的参数是相同的<br>如果then()的回调没有return语句，那么then返回的promise为接受，但是其value为undefined    </p>
 <p>注意这个例子，</p>
